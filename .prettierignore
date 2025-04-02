@@ -1,0 +1,10 @@
+.prettierrc
+.gitignore
+eslint.config.mjs
+package.json
+package-lock.json
+postcss.config.cjs
+tailwind.config.cjs
+tsconfig.json
+tsconfig.node.json
+vite.config.tsconfig
