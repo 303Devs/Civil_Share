@@ -25,7 +25,7 @@ const Navbar = () => {
         <input
           type='text'
           placeholder='Search for campaigns'
-          className='flex w-full font-epilogue font-normal text-[14px] placeholder:text-placeholder-text text-white bg-transparent outline-none'
+          className='flex w-full font-epilogue font-normal text-[14px] placeholder:text-placeholder-text text-white bg-transparent outline-hidden'
           onChange={(e) => handleSearch(e)}
         />
 

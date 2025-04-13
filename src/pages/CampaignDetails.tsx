@@ -90,7 +90,7 @@ const CampaignDetails = () => {
       </div>
 
       <div className='mt-[60px] flex lg:flex-row flex-col gap-5'>
-        <div className='flex-[2] flex flex-col gap-[40px]'>
+        <div className='flex-2 flex flex-col gap-[40px]'>
           <div>
             <h4 className='font-epilogue font-semibold text-[18px] text-white uppercase'>
               Creator
@@ -165,7 +165,7 @@ const CampaignDetails = () => {
                 placeholder='ETH 0.01'
                 step='0.01'
                 min='0.01'
-                className='w-full py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-black-2 bg-transparent font-epilogue text-white text-[18px] leading-[30px] placeholder:text-placeholder-text rounded-[10px]'
+                className='w-full py-[10px] sm:px-[20px] px-[15px] outline-hidden border-[1px] border-black-2 bg-transparent font-epilogue text-white text-[18px] leading-[30px] placeholder:text-placeholder-text rounded-[10px]'
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
