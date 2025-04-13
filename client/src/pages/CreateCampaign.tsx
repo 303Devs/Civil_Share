@@ -33,7 +33,11 @@ const CreateCampaign = () => {
     checkIfImage(form.image, async (exists: boolean) => {
       if (exists) {
         setIsLoading(true);
-        const txnHash = await publishCampaign({
+        // const txnHash = await publishCampaign({
+        //   ...form,
+        //   target: toWei(form.target),
+        // });
+        await publishCampaign({
           ...form,
           target: toWei(form.target),
         });

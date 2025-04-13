@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
@@ -24,7 +24,7 @@ const SuccessMessage = ({
         />
       </div>
       <p className='font-epilogue font-bold text-3xl text-center text-white w-[65%] leading-[42px]'>
-        Success! <br /> This campaign has reached its goal.
+        Success! <br /> This campaign has reached its goal. {percentToTarget}%
       </p>
       <div className='mt-4'>
         <CustomButton

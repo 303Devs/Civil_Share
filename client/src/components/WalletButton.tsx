@@ -6,23 +6,22 @@ import { useContractContext } from '../context/ContractContext';
 const connectButtonStyles =
   'font-epilogue font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]';
 
-const connectModalMetadata = {
-  title: 'Civil Share',
-  subtitle: 'Changing the World One Campaign at a Time.',
-  logoUrl: 'https://imgur.com/a/fy8eCRe',
-};
+// const connectModalMetadata = {
+//   title: 'Civil Share',
+//   subtitle: 'Changing the World One Campaign at a Time.',
+//   logoUrl: 'https://imgur.com/a/fy8eCRe',
+// };
 
-const welcomeScreen = {
-  title: connectModalMetadata.title,
-  subtitle: connectModalMetadata.subtitle,
-  img: {
-    src: connectModalMetadata.logoUrl,
-    width: 300,
-    height: 50,
-  },
-};
+// const welcomeScreen = {
+//   title: connectModalMetadata.title,
+//   subtitle: connectModalMetadata.subtitle,
+//   img: {
+//     src: connectModalMetadata.logoUrl,
+//     width: 300,
+//     height: 50,
+//   },
+// };
 
-let btnLabel = 'Connect a Wallet';
 const WalletButton = () => {
   const { client, setActiveAccount, account } = useContractContext();
   const activeAccount = useActiveAccount() || undefined;

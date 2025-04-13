@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import {
   prepareContractCall,
-  sendTransaction,
+  // sendTransaction,
   createThirdwebClient,
   getContract,
   toEther,
@@ -10,7 +10,7 @@ import {
   sendAndConfirmTransaction,
 } from 'thirdweb';
 import { sepolia } from 'thirdweb/chains';
-import { useActiveAccount } from 'thirdweb/react';
+// import { useActiveAccount } from 'thirdweb/react';
 import { Account } from 'thirdweb/dist/types/exports/wallets.native';
 
 const ContractContext = createContext<ContractContextType | null>(null);

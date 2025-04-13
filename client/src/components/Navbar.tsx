@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useContractContext, useActivePageContext } from '../context';
+import { useActivePageContext } from '../context';
 import { WalletButton } from './';
 import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
@@ -10,7 +10,7 @@ import { navlinks } from '../constants';
 const Navbar = () => {
   const navigate = useNavigate();
   const { isActive, setActivePage } = useActivePageContext();
-  const { getCampaigns } = useContractContext();
+  // const { getCampaigns } = useContractContext();
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [searchTerm, setSearchTerm] = useState('')
 

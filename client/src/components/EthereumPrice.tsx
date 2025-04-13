@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getContract, readContract, toUnits } from 'thirdweb';
+import { getContract, readContract} from 'thirdweb';
 import { sepolia } from 'thirdweb/chains';
 import { useContractContext } from '../context/ContractContext';
 

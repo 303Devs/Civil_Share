@@ -10,7 +10,7 @@ export const ActivePageContextProvider = ({
   const [isActive, setIsActive] = useState('dashboard');
 
   useEffect(() => {
-    let path = pathname.slice(1)
+    // let path = pathname.slice(1)
 
     if (pathname === '/') {
       setIsActive('dashboard')
