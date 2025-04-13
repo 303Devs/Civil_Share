@@ -29,7 +29,7 @@ const Navbar = () => {
           onChange={(e) => handleSearch(e)}
         />
 
-        <div className='w-[72px] h-full rounded-[20px] bg-green-2 flex justify-center items-center cursor-pointer'>
+        <div className='w-[72px] h-full rounded-[20px] bg-purple-main flex justify-center items-center cursor-pointer'>
           <img
             src={search}
             alt='search'
@@ -88,7 +88,7 @@ const Navbar = () => {
                   className={`w-[24px] h-[24px] object-contain ${isActive === link.name ? 'grayscale-0 ' : 'grayscale'}`}
                 />
                 <p
-                  className={`ml-[20px] font-epilogue font-semibold text-[14px] cursor-default ${isActive === link.name ? 'text-green-1' : 'text-primary-text'}`}>
+                  className={`ml-[20px] font-epilogue font-semibold text-[14px] cursor-default ${isActive === link.name ? 'text-light-purple' : 'text-primary-text'}`}>
                   {link.name}
                 </p>
               </li>

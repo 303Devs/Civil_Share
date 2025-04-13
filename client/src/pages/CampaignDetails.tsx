@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useContractContext } from '../context/ContractContext';
 import { CustomButton, CountBox, Loader, SuccessMessage } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { thirdweb } from '../assets';
+import { logo } from '../assets';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
@@ -65,7 +65,7 @@ const CampaignDetails = () => {
           />
           <div className='relative w-full h-[5px] bg-black-2 mt-2'>
             <div
-              className='absolute h-full bg-green-2'
+              className='absolute h-full bg-purple-main'
               style={{
                 width: `${percentToTarget}%`,
                 maxWidth: '100%',
@@ -98,7 +98,7 @@ const CampaignDetails = () => {
             <div className='mt-[20px] flex flex-row items-center flex-wrap gap-[14px]'>
               <div className='w-[52px] h-[52px] flex items-center justify-center rounded-full bg-grey-1 cursor-pointer'>
                 <img
-                  src={thirdweb}
+                  src={logo}
                   alt='user'
                   className='w-[60%] h-[60%] object-contain'
                 />

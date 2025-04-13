@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react';
 
-import { tagType, thirdweb } from '../assets';
+import { tagType, logo } from '../assets';
 import { daysLeft } from '../utils';
 
 interface FundCardProps extends Campaign {
@@ -74,7 +74,7 @@ const FundCard = ({
         <div className='flex items-center mt-[20px] gap-[12px]'>
           <div className='w-[30px] h-[30px] rounded-full flex justify-center items-center bg-black-bg'>
             <img
-              src={thirdweb}
+              src={logo}
               alt='user'
               className='w-1/2 h-1/2 object-contain'
             />
