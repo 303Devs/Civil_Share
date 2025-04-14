@@ -1,13 +1,24 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar, Sidebar } from './components';
-import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';
+import {
+  CampaignDetails,
+  CreateCampaign,
+  Campaigns,
+  Profile,
+  Home,
+} from './pages';
 
 const App = () => {
+  const pathName = useLocation().pathname;
+
+  if (pathName === '/') {
+    return <Home />;
+  }
   return (
     <div
       className='relative sm:p-8 p-4 bg-black-bg
-     min-h-screen flex flex-row'>
+        min-h-screen flex flex-row'>
       <div className='sm:flex hidden mr-10 relative'>
         <Sidebar />
       </div>
@@ -19,6 +30,10 @@ const App = () => {
           <Route
             path='/'
             element={<Home />}
+          />
+          <Route
+            path='/campaigns'
+            element={<Campaigns />}
           />
           <Route
             path='/profile'

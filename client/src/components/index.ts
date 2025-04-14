@@ -10,3 +10,4 @@ export { default as Loader } from './Loader';
 export { default as SuccessMessage } from './SuccessMessage';
 export { default as EthereumPrice } from './EthereumPrice';
 export { TextGenerateEffect as TextGenerate } from './TextGenerate';
+export { default as Lamp } from './Lamp';

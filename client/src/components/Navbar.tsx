@@ -2,25 +2,29 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useActivePageContext } from '../context';
-import { WalletButton } from './';
+import { WalletButton, TextGenerate } from './';
 import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
-
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { isActive, setActivePage } = useActivePageContext();
   // const { getCampaigns } = useContractContext();
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const title = 'Civil Share';
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value)
-    console.log(searchTerm)
-  }
+    setSearchTerm(e.target.value);
+    console.log(searchTerm);
+  };
 
   return (
     <div className='flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6'>
+      <h1 className='hidden md:inline-block text-center -mt-4 pb-4'>
+        <TextGenerate words={title} />
+      </h1>
       <div className='lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-black-1 rounded-[100px]'>
         <input
           type='text'
@@ -28,7 +32,6 @@ const Navbar = () => {
           className='flex w-full font-epilogue font-normal text-[14px] placeholder:text-placeholder-text text-white bg-transparent outline-hidden'
           onChange={(e) => handleSearch(e)}
         />
-
         <div className='w-[72px] h-full rounded-[20px] bg-purple-main flex justify-center items-center cursor-pointer'>
           <img
             src={search}
@@ -63,6 +66,10 @@ const Navbar = () => {
           />
         </div>
 
+        <h1 className=' text-center pb-4'>
+          <TextGenerate words={title} />
+        </h1>
+
         <img
           src={menu}
           alt='menu'
@@ -78,9 +85,11 @@ const Navbar = () => {
                 key={link.name}
                 className={`flex p-4 ${isActive === link.name && 'bg-black-2'}`}
                 onClick={() => {
-                  setActivePage(link.name);
-                  setToggleDrawer(false);
-                  navigate(link.link);
+                  if (!link.disabled) {
+                    setActivePage(link.name);
+                    setToggleDrawer(false);
+                    navigate(link.link);
+                  }
                 }}>
                 <img
                   src={link.imgUrl}

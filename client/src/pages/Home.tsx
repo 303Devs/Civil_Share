@@ -1,30 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useContractContext } from '../context/ContractContext';
-import { DisplayCampaigns } from '../components';
+'use client';
+import React from 'react';
+import { motion } from 'motion/react';
+import { Lamp } from '../components';
 
-const Home = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
-
-  const { account, contract, getCampaigns } = useContractContext();
-
-  const fetchCampaigns = async () => {
-    setIsLoading(true);
-    const data = await getCampaigns();
-    setCampaigns(data);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    if (contract) fetchCampaigns();
-  }, [account, contract]);
+export function Home() {
   return (
-    <DisplayCampaigns
-      title={'All Campaigns'}
-      isLoading={isLoading}
-      campaigns={campaigns}
-    />
+    <div>
+      <Lamp>
+        <motion.h1
+          initial={{ opacity: 0.5, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: 'easeInOut',
+          }}
+          className='mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl'>
+          Welcome to Civil Share!
+        </motion.h1>
+      </Lamp>
+    </div>
   );
-};
+}
 
 export default Home;
