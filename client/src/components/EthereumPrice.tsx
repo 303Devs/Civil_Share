@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getContract, readContract} from 'thirdweb';
+import { getContract, readContract, toUnits } from 'thirdweb';
 import { sepolia } from 'thirdweb/chains';
 import { useContractContext } from '../context/ContractContext';
 
@@ -349,6 +349,7 @@ const EthereumPrice: React.FC<EthereumPriceProps> = ({ target }) => {
     });
     const ethToUsd = (Number(priceData) / 10 ** 8).toFixed(2);
     setEthPrice(Number(ethToUsd));
+    console.log(Number(ethToUsd));
     setIsLoading(false);
   };
 
@@ -357,7 +358,7 @@ const EthereumPrice: React.FC<EthereumPriceProps> = ({ target }) => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading Ethereum price...</div>;
+    return <div className='text-primary-text'>Loading Ethereum price...</div>;
   }
 
   return (

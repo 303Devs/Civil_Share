@@ -9,7 +9,7 @@ import {
   toWei,
   sendAndConfirmTransaction,
 } from 'thirdweb';
-import { sepolia } from 'thirdweb/chains';
+import { base } from 'thirdweb/chains';
 // import { useActiveAccount } from 'thirdweb/react';
 import { Account } from 'thirdweb/dist/types/exports/wallets.native';
 
@@ -21,7 +21,7 @@ const client = createThirdwebClient({
 
 const contract = getContract({
   client: client,
-  chain: sepolia,
+  chain: base,
   address: import.meta.env.VITE_CONTRACT_ADDRESS,
   abi: [
     {
