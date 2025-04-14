@@ -33,20 +33,25 @@ const DisplayCampaigns = ({
 
   return (
     <div>
-      <div className='flex items-center'>
-        <h1 className='font-epilogue font-semibold text-[18px] text-white text-left pr-2'>
-          {title} ( {filteredCampaigns.length} )
+      <div className='flex flex-col'>
+        <h1 className='font-epilogue font-semibold text-[32px] text-white text-center pb-8'>
+          Welcome to Civil Share
         </h1>
-        <select
-          value={filter}
-          onChange={(e) =>
-            setFilter(e.target.value as 'all' | 'current' | 'expired')
-          }
-          className='text-white px-2 py-1 rounded border border-purple-main'>
-          <option value='all'>All</option>
-          <option value='current'>Current</option>
-          <option value='expired'>Expired</option>
-        </select>
+        <div className='flex flex-row'>
+          <h2 className='font-epilogue font-semibold text-[18px] text-white text-left pr-2'>
+            {title} ( {filteredCampaigns.length} )
+          </h2>
+          <select
+            value={filter}
+            onChange={(e) =>
+              setFilter(e.target.value as 'all' | 'current' | 'expired')
+            }
+            className='text-white px-2 py-1 rounded border border-purple-main'>
+            <option value='all'>All</option>
+            <option value='current'>Current</option>
+            <option value='expired'>Expired</option>
+          </select>
+        </div>
       </div>
 
       <div className='flex flex-wrap mt-[20px] gap-[26px]'>
