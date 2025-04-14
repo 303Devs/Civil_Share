@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useContractContext } from '../context/ContractContext';
 import { DisplayCampaigns } from '../components';
 
-const Dashboard = () => {
+const Campaigns = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
 
@@ -27,4 +27,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Campaigns;

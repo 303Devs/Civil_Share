@@ -21,8 +21,29 @@ interface ContractContextType {
   getDonations: (
     pId: bigint
   ) => Promise<{ donator: string; donation: string }[]>;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
 }
 
 interface ContextProviderProps {
   children: ReactNode;
 }
+
+const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const term = e.target.value.toLowerCase();
+  setSearchTerm(term);
+
+  try {
+    const campaigns = await getCampaigns();
+    const filtered = campaigns.filter(
+      (c) =>
+        c.title.toLowerCase().includes(term) ||
+        c.description.toLowerCase().includes(term)
+    );
+
+    console.log('Search Results:', filtered);
+    // You can pass these filtered results to state or props as needed.
+  } catch (err) {
+    console.error('Search error:', err);
+  }
+};

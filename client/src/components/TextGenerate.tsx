@@ -7,7 +7,7 @@ export const TextGenerateEffect = ({
   words,
   className,
   filter = true,
-  duration = 0.5,
+  duration = 0.3,
 }: {
   words: string;
   className?: string;
@@ -37,7 +37,7 @@ export const TextGenerateEffect = ({
           return (
             <motion.span
               key={word + idx}
-              className='text-purple-main text-5xl opacity-0 font-semibold'
+              className='text-purple-main text-5xl opacity-0 font-semibold font-mono'
               style={{
                 filter: filter ? 'blur(10px)' : 'none',
               }}>

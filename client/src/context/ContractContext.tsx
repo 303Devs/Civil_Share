@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import {
   prepareContractCall,
-  // sendTransaction,
   createThirdwebClient,
   getContract,
   toEther,
@@ -10,7 +9,6 @@ import {
   sendAndConfirmTransaction,
 } from 'thirdweb';
 import { base } from 'thirdweb/chains';
-// import { useActiveAccount } from 'thirdweb/react';
 import { Account } from 'thirdweb/dist/types/exports/wallets.native';
 
 const ContractContext = createContext<ContractContextType | null>(null);
@@ -118,6 +116,7 @@ const contract = getContract({
 
 export const ContractContextProvider = ({ children }: ContextProviderProps) => {
   const [account, setAccount] = useState<Account | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const setActiveAccount = (userAccount: Account) => {
     setAccount(userAccount);
@@ -254,6 +253,8 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
         getUserCampaigns,
         donate,
         getDonations,
+        searchTerm,
+        setSearchTerm,
       }}>
       {children}
     </ContractContext.Provider>

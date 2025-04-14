@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useActivePageContext } from '../context';
+import { useActivePageContext, useContractContext } from '../context';
 import { WalletButton, TextGenerate } from './';
 import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
@@ -9,15 +9,13 @@ import { navlinks } from '../constants';
 const Navbar = () => {
   const navigate = useNavigate();
   const { isActive, setActivePage } = useActivePageContext();
-  // const { getCampaigns } = useContractContext();
+  const { setSearchTerm } = useContractContext();
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
 
   const title = 'Civil Share';
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    console.log(searchTerm);
   };
 
   return (

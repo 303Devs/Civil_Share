@@ -1,26 +1,13 @@
 import React, { useEffect } from 'react';
 import { ConnectButton, useActiveAccount } from 'thirdweb/react';
-import { sepolia } from 'thirdweb/chains';
+import { base } from 'thirdweb/chains';
 import { useContractContext } from '../context/ContractContext';
 
 const connectButtonStyles =
   'font-epilogue font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]';
 
-// const connectModalMetadata = {
-//   title: 'Civil Share',
-//   subtitle: 'Changing the World One Campaign at a Time.',
-//   logoUrl: 'https://imgur.com/a/fy8eCRe',
-// };
-
-// const welcomeScreen = {
-//   title: connectModalMetadata.title,
-//   subtitle: connectModalMetadata.subtitle,
-//   img: {
-//     src: connectModalMetadata.logoUrl,
-//     width: 300,
-//     height: 50,
-//   },
-// };
+const logo =
+  'https://res.cloudinary.com/dxvlke88h/image/upload/v1744614467/civil_diamond_transparent_vp218l.png';
 
 const WalletButton = () => {
   const { client, setActiveAccount, account } = useContractContext();
@@ -28,10 +15,10 @@ const WalletButton = () => {
 
   const buttonLabel = account ? 'Connected' : 'Connect a Wallet';
   const buttonStyles = {
-    backgroundColor: account ? '#8c6dfd' : '#9300f3', 
+    backgroundColor: account ? '#8c6dfd' : '#9300f3',
     fontFamily: 'epilogue',
     border: 'none',
-    color: '#ffffff'
+    color: '#ffffff',
   };
 
   useEffect(() => {
@@ -41,41 +28,47 @@ const WalletButton = () => {
   }, [activeAccount]);
 
   return (
-    <ConnectButton
-      client={client}
-      chain={sepolia}       
-      appMetadata={{
-        name: 'Civil Protocol',
-        url: 'www.civilprotocol.com',
-        description: 'Changing the World One Campaign at a Time.',
-        logoUrl: 'https://imgur.com/a/fy8eCRe',
-      }}
-      connectButton={{
-        label: buttonLabel,
-        className: connectButtonStyles,
-        style: buttonStyles,
-      }}
-      connectModal={{
-        showThirdwebBranding: false,
-        title: 'Civil Protocol',
-        titleIcon: 'https://imgur.com/a/fy8eCRe',
-        welcomeScreen: {
-          title: 'Civil Protocol',
-          subtitle: 'Changing the World One Campaign at a Time.',
-          img: {
-            src: 'https://imgur.com/a/fy8eCRe',
-            width: 300,
-            height: 50,
+    <div>
+      <ConnectButton
+        client={client}
+        chain={base}
+        appMetadata={{
+          name: 'Civil Share',
+          url: 'www.share.civilprotocol.io',
+          description: 'Changing the World One Campaign at a Time.',
+          logoUrl: logo,
+        }}
+        connectButton={{
+          label: buttonLabel,
+          className: connectButtonStyles,
+          style: buttonStyles,
+        }}
+        connectModal={{
+          termsOfServiceUrl: 'https://www.share.civilprotocol.io/terms',
+          privacyPolicyUrl: 'https://www.share.civilprotocol.io/privacy',
+          size: 'wide',
+          showThirdwebBranding: false,
+          title: 'Civil Share',
+          titleIcon: logo,
+          welcomeScreen: {
+            title: 'Civil Share',
+            subtitle:
+              'Log in with an existing wallet or use "Social Login" via email, phone, social, or passkey. A new wallet will be created and linked to your account. You can export your private key under "Manage Wallet" — keep it secure and never share it.',
+            img: {
+              src: logo,
+              width: 150,
+              height: 150,
+            },
           },
-        },
-      }}
-      onConnect={(wallet) => {
-        const account = wallet.getAccount();
-        if (!account) throw new Error('No account found in wallet');
-        setActiveAccount(account);
-      }}
-      onDisconnect={() => setActiveAccount(null)}
-    />
+        }}
+        onConnect={(wallet) => {
+          const account = wallet.getAccount();
+          if (!account) throw new Error('No account found in wallet');
+          setActiveAccount(account);
+        }}
+        onDisconnect={() => setActiveAccount(null)}
+      />
+    </div>
   );
 };
 

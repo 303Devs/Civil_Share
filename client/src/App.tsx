@@ -7,6 +7,8 @@ import {
   Campaigns,
   Profile,
   Home,
+  TermsOfService,
+  PrivacyPolicy,
 } from './pages';
 
 const App = () => {
@@ -46,6 +48,14 @@ const App = () => {
           <Route
             path='/campaign-details/:id'
             element={<CampaignDetails />}
+          />
+          <Route
+            path='/terms'
+            element={<TermsOfService />}
+          />
+          <Route
+            path='/privacy'
+            element={<PrivacyPolicy />}
           />
         </Routes>
       </div>
