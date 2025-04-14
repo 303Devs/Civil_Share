@@ -9,9 +9,9 @@ import {
 
 export const navlinks = [
   {
-    name: 'dashboard',
+    name: 'campaigns',
     imgUrl: dashboard,
-    link: '/dashboard',
+    link: '/campaigns',
   },
   {
     name: 'campaign',
