@@ -61,7 +61,7 @@ const CampaignDetails = () => {
           <img
             src={state.image}
             alt={'campaign'}
-            className='w-full h-[410px] object-cover rounded-xl'
+            className='w-full h-[410px] object-contain rounded-xl'
           />
           <div className='relative w-full h-[5px] bg-black-2 mt-2'>
             <div
@@ -100,7 +100,7 @@ const CampaignDetails = () => {
                 <img
                   src={logo}
                   alt='user'
-                  className='w-[60%] h-[60%] object-contain'
+                  className='w-[60%] h-[60%] object-cover'
                 />
               </div>
               <div className=''>
