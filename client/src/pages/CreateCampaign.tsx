@@ -18,6 +18,7 @@ const CreateCampaign = () => {
     target: '',
     deadline: '',
     image: '',
+    category: '',
   });
 
   const handleFormFieldChange = (
@@ -33,10 +34,7 @@ const CreateCampaign = () => {
     checkIfImage(form.image, async (exists: boolean) => {
       if (exists) {
         setIsLoading(true);
-        // const txnHash = await publishCampaign({
-        //   ...form,
-        //   target: toWei(form.target),
-        // });
+
         await publishCampaign({
           ...form,
           target: toWei(form.target),
@@ -62,6 +60,13 @@ const CreateCampaign = () => {
       <form
         onSubmit={handleSubmit}
         className='w-full mt-[65px] flex flex-col gap-[30px]'>
+        <FormField
+          labelName='Campaign Title *'
+          placeholder='Write a title'
+          inputType='text'
+          value={form.title}
+          handleChange={(e) => handleFormFieldChange('title', e)}
+        />
         <div className='flex flex-wrap gap-[40px]'>
           <FormField
             labelName='Your Name *'
@@ -71,11 +76,11 @@ const CreateCampaign = () => {
             handleChange={(e) => handleFormFieldChange('name', e)}
           />
           <FormField
-            labelName='Campaign Title *'
-            placeholder='Write a title'
+            labelName='Category *'
+            placeholder='Select a Category'
             inputType='text'
-            value={form.title}
-            handleChange={(e) => handleFormFieldChange('title', e)}
+            value={form.category}
+            handleChange={(e) => handleFormFieldChange('category', e)}
           />
         </div>
 

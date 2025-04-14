@@ -6,5 +6,6 @@ interface Campaign {
   deadline: number;
   amountCollected: string;
   image: string;
+  category: string;
   pId: number;
 }

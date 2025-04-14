@@ -16,6 +16,10 @@ const DisplayCampaigns = ({
   campaigns = [],
 }: DisplayCampaignsProps) => {
   const navigate = useNavigate();
+  const handleNavigate = (campaign: Campaign) => {
+    navigate(`/campaign-details/${campaign.title}`, { state: campaign });
+  };
+
   const { searchTerm } = useContractContext();
   const [filter, setFilter] = useState<'all' | 'current' | 'expired'>(
     'current'
@@ -81,7 +85,7 @@ const DisplayCampaigns = ({
             <FundCard
               key={campaign.pId}
               {...campaign}
-              handleClick={() => navigate('/campaigns')}
+              handleClick={() => handleNavigate(campaign)}
             />
           ))}
       </div>

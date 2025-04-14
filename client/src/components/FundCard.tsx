@@ -15,6 +15,7 @@ const FundCard = ({
   deadline,
   amountCollected,
   image,
+  category,
   handleClick,
 }: FundCardProps) => {
   const remainingDays = daysLeft(new Date(deadline));
@@ -36,7 +37,7 @@ const FundCard = ({
             className='w-[17px] h-[17px] object-contain'
           />
           <p className='ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-primary-text'>
-            Category
+            {category}
           </p>
         </div>
 
