@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loader } from '../assets';
-import { FundCard } from './';
+import { FundCard, TextGenerate } from './';
 
 type DisplayCampaignsProps = {
   title: string;
@@ -31,11 +31,13 @@ const DisplayCampaigns = ({
     navigate(`/campaign-details/${campaign.title}`, { state: campaign });
   };
 
+  const headerWords = 'Welcome to Civil Share!';
+
   return (
     <div>
       <div className='flex flex-col'>
-        <h1 className='font-epilogue font-semibold text-[32px] text-white text-center pb-8'>
-          Welcome to Civil Share
+        <h1 className='text-center pb-8'>
+          <TextGenerate words={headerWords} />
         </h1>
         <div className='flex flex-row'>
           <h2 className='font-epilogue font-semibold text-[18px] text-white text-left pr-2'>
