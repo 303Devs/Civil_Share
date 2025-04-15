@@ -15,7 +15,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => (
     <input
       type='text'
       placeholder='Search Campaigns'
-      className='flex w-full font-epilogue font-normal text-[14px] placeholder:text-placeholder-text text-white bg-transparent outline-hidden'
+      className='flex w-full font-epilogue font-normal text-[12px] placeholder:text-placeholder-text text-white bg-transparent outline-hidden'
       onChange={handleSearch}
     />
     <div className='w-[72px] h-full rounded-[20px] bg-purple-main flex justify-center items-center cursor-pointer'>
