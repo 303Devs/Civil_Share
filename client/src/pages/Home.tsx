@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Lamp, MagicButton, TextGenerate } from '../components';
 
-import logo from '../assets/logo.webp';
+import logo from '/logo.svg';
 
 export function Home() {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ export function Home() {
           src={logo}
           width={200}
           height={200}
+          alt={'logo'}
         />
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
@@ -36,6 +37,7 @@ export function Home() {
                 src={logo}
                 width={25}
                 height={25}
+                alt={logo}
               />
             }
             position={'left'}

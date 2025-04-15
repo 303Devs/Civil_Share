@@ -1,8 +1,8 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import path from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -29,6 +29,7 @@ export default defineConfig({
         ],
       },
       workbox: {
+        maximumFileSizeToCacheInBytes: 5000000, // 5MB for large files like vendor bundles
         runtimeCaching: [
           {
             urlPattern:
@@ -38,9 +39,8 @@ export default defineConfig({
               cacheName: 'thirdweb-read-cache',
               expiration: {
                 maxEntries: 30,
-                maxAgeSeconds: 60, // cache for 1 minute
+                maxAgeSeconds: 60,
               },
-              networkTimeoutSeconds: 8,
             },
           },
           {
@@ -50,7 +50,7 @@ export default defineConfig({
               cacheName: 'image-cache',
               expiration: {
                 maxEntries: 60,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+                maxAgeSeconds: 60 * 60 * 24 * 7,
               },
             },
           },
@@ -66,7 +66,7 @@ export default defineConfig({
               cacheName: 'html-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24, // 1 day
+                maxAgeSeconds: 60 * 60 * 24,
               },
             },
           },
@@ -77,7 +77,7 @@ export default defineConfig({
               cacheName: 'static-assets-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+                maxAgeSeconds: 60 * 60 * 24 * 7,
               },
             },
           },
@@ -88,7 +88,7 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
             },
           },
@@ -99,7 +99,7 @@ export default defineConfig({
               cacheName: 'ipfs-json-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 10, // 10 minutes
+                maxAgeSeconds: 60 * 10,
               },
             },
           },
@@ -107,4 +107,18 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    chunkSizeWarningLimit: 1000, // Optional: raise the warning limit if needed
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            const dirs = id.toString().split('node_modules/')[1].split('/');
+            // Handles both scoped and unscoped packages
+            return dirs[0].startsWith('@') ? `${dirs[0]}/${dirs[1]}` : dirs[0];
+          }
+        },
+      },
+    },
+  },
 });
