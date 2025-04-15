@@ -48,6 +48,8 @@ const Navbar = () => {
           <img
             src={logo}
             alt='user'
+            height={30}
+            width={30}
             className='object-contain'
           />
         </div>
