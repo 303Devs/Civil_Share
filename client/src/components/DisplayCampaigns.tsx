@@ -48,7 +48,9 @@ const DisplayCampaigns = ({
       <div className='flex flex-col'>
         <div className='flex flex-row'>
           <h2 className='font-epilogue font-semibold text-[18px] text-white text-left pr-8'>
-            {title} ({finalCampaigns.length})
+            <div className='flex flex-row'>
+              <p className='mr-2'>{title}</p>({finalCampaigns.length})
+            </div>
           </h2>
           <select
             value={filter}
