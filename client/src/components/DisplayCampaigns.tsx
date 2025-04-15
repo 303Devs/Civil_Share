@@ -21,9 +21,7 @@ const DisplayCampaigns = ({
   };
 
   const { searchTerm } = useContractContext();
-  const [filter, setFilter] = useState<'all' | 'current' | 'expired'>(
-    'current'
-  );
+  const [filter, setFilter] = useState<'all' | 'active' | 'expired'>('active');
 
   const searchFilteredCampaigns = campaigns.filter((campaign) => {
     const query = searchTerm.toLowerCase();
@@ -36,7 +34,7 @@ const DisplayCampaigns = ({
   const now = Date.now();
   const deadlineFiltered = campaigns.filter((campaign) => {
     const deadline = Number(campaign.deadline);
-    if (filter === 'current') return deadline >= now;
+    if (filter === 'active') return deadline >= now;
     if (filter === 'expired') return deadline < now;
     return true;
   });
@@ -54,11 +52,11 @@ const DisplayCampaigns = ({
           <select
             value={filter}
             onChange={(e) =>
-              setFilter(e.target.value as 'all' | 'current' | 'expired')
+              setFilter(e.target.value as 'all' | 'active' | 'expired')
             }
             className='text-white px-2 py-1 rounded border border-purple-main'>
             <option value='all'>All</option>
-            <option value='current'>Current</option>
+            <option value='active'>Active</option>
             <option value='expired'>Expired</option>
           </select>
         </div>
