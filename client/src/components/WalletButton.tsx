@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { ConnectButton, useActiveAccount } from 'thirdweb/react';
 import { base } from 'thirdweb/chains';
 import { useContractContext } from '../context/ContractContext';
+import { Wallet, Account } from 'thirdweb/dist/types/exports/wallets.native';
 
 const connectButtonStyles =
   'font-epilogue font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]';
@@ -13,19 +14,37 @@ const WalletButton = () => {
   const { client, setActiveAccount, account } = useContractContext();
   const activeAccount = useActiveAccount() || undefined;
 
-  const buttonLabel = account ? 'Connected' : 'Connect a Wallet';
-  const buttonStyles = {
-    backgroundColor: account ? '#8c6dfd' : '#9300f3',
-    fontFamily: 'epilogue',
-    border: 'none',
-    color: '#ffffff',
-  };
+  const buttonLabel = useMemo(
+    () => (account ? 'Connected' : 'Connect a Wallet'),
+    [account]
+  );
+  const buttonStyles = useMemo(
+    () => ({
+      backgroundColor: account ? '#8c6dfd' : '#9300f3',
+      fontFamily: 'epilogue',
+      border: 'none',
+      color: '#ffffff',
+    }),
+    [account]
+  );
 
   useEffect(() => {
     if (account && activeAccount && activeAccount.address !== account.address) {
       setActiveAccount(activeAccount);
     }
-  }, [activeAccount]);
+  }, [activeAccount, account, setActiveAccount]);
+
+  const handleConnect = useCallback(
+    (wallet: Wallet) => {
+      const account: Account | undefined = wallet.getAccount();
+      if (!account) {
+        console.warn('Wallet connected but no account available');
+        return;
+      }
+      setActiveAccount(account);
+    },
+    [setActiveAccount]
+  );
 
   return (
     <div>
@@ -61,11 +80,7 @@ const WalletButton = () => {
             },
           },
         }}
-        onConnect={(wallet) => {
-          const account = wallet.getAccount();
-          if (!account) throw new Error('No account found in wallet');
-          setActiveAccount(account);
-        }}
+        onConnect={handleConnect}
         onDisconnect={() => setActiveAccount(null)}
       />
     </div>

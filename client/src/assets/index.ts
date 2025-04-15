@@ -1,15 +1,15 @@
-import createCampaign from './create_campaign.webp';
-import dashboard from './dashboard.webp';
-import logo from './logo.webp';
-import logout from './logout.webp';
-import payment from './payment.webp';
-import profile from './profile.webp';
-import sun from './sun.webp';
-import withdraw from './withdraw.webp';
-import tagType from './type.webp';
-import search from './search.webp';
-import menu from './menu.webp';
-import money from './money.webp';
+import createCampaign from './create_campaign.svg';
+import dashboard from './dashboard.svg';
+import logo from './logo.svg';
+import logout from './logout.svg';
+import payment from './payment.svg';
+import profile from './profile.svg';
+import sun from './sun.svg';
+import withdraw from './withdraw.svg';
+import tagType from './type.svg';
+import search from './search.svg';
+import menu from './menu.svg';
+import money from './money.svg';
 import loader from './loader.svg';
 
 export {

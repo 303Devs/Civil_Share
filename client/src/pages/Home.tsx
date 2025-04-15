@@ -3,11 +3,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Lamp, MagicButton, TextGenerate } from '../components';
+import { useActivePageContext } from '../context';
 
 import logo from '/logo.svg';
 
 export function Home() {
   const navigate = useNavigate();
+  const { setActivePage } = useActivePageContext();
 
   return (
     <div>
@@ -17,6 +19,7 @@ export function Home() {
           width={200}
           height={200}
           alt={'logo'}
+          loading='eager'
         />
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
@@ -42,6 +45,7 @@ export function Home() {
             }
             position={'left'}
             handleClick={() => {
+              setActivePage('dashboard');
               navigate('/dashboard');
             }}
             otherClasses={'text-neutral-200'}

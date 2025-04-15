@@ -14,32 +14,37 @@ interface IconProps {
   handleClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const Icon: React.FC<IconProps> = ({
+const IconComponent: React.FC<IconProps> = ({
   styles,
   name,
   imgUrl,
   isActive,
+  disabled,
   handleClick,
 }) => {
+  const isCurrentlyActive = isActive && isActive === name;
+  const imgClass =
+    !isActive ? 'w-[48px] h-[48px]' : (
+      `w-1/2 h-1/2 ${isCurrentlyActive ? '' : 'grayscale'}`
+    );
+
   return (
     <div
-      className={`w-[48px] h-[48px] rounded-[10px] ${isActive && isActive === name && 'bg-grey-1'} flex justify-center items-center {!disabled && 'cursor-pointer'} ${styles}`}
-      onClick={handleClick}>
-      {!isActive ?
-        <img
-          src={imgUrl}
-          alt='fund_logo'
-          className='w-[48px] h-[48px]'
-        />
-      : <img
-          src={imgUrl}
-          alt='fund_logo'
-          className={`w-1/2 h-1/2 ${isActive !== name && 'grayscale'}`}
-        />
-      }
+      className={`w-[48px] h-[48px] rounded-[10px] flex justify-center items-center ${
+        isCurrentlyActive ? 'bg-grey-1' : ''
+      } ${!disabled ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'} ${styles}`}
+      onClick={!disabled ? handleClick : undefined}>
+      <img
+        src={imgUrl}
+        alt='fund_logo'
+        loading='lazy'
+        className={imgClass}
+      />
     </div>
   );
 };
+
+const Icon = React.memo(IconComponent);
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -53,6 +58,8 @@ const Sidebar = () => {
         <Icon
           styles='w-[52px] h-[52px] bg-bg-1'
           imgUrl={logo}
+          name='home'
+          isActive={isActive}
         />
       </Link>
 
@@ -76,6 +83,8 @@ const Sidebar = () => {
         <Icon
           styles='bg-black-1 shadow-secondary'
           imgUrl={sun}
+          name='theme'
+          isActive={isActive}
         />
       </div>
     </div>

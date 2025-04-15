@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useContractContext } from '../context';
 import { money } from '../assets';
-import { CustomButton, FormField, Loader, EthereumPrice } from '../components';
+const CustomButton = lazy(() => import('../components/CustomButton'));
+const FormField = lazy(() => import('../components/FormField'));
+const Loader = lazy(() => import('../components/Loader'));
+const EthereumPrice = lazy(() => import('../components/EthereumPrice'));
 import { checkIfImage } from '../utils';
 import { toWei } from 'thirdweb';
 
@@ -50,7 +53,11 @@ const CreateCampaign = () => {
 
   return (
     <div className='bg-black-1 flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4'>
-      {isLoading && <Loader />}
+      {isLoading && (
+        <Suspense fallback={null}>
+          <Loader />
+        </Suspense>
+      )}
       <div className='flex justify-center items-center p-[16px] sm:min-w-[380px] bg-black-2 rounded-[10px]'>
         <h1 className='font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white'>
           Start a Campaign 🚀
@@ -60,37 +67,45 @@ const CreateCampaign = () => {
       <form
         onSubmit={handleSubmit}
         className='w-full mt-[65px] flex flex-col gap-[30px]'>
-        <FormField
-          labelName='Campaign Title *'
-          placeholder='Write a title'
-          inputType='text'
-          value={form.title}
-          handleChange={(e) => handleFormFieldChange('title', e)}
-        />
+        <Suspense fallback={null}>
+          <FormField
+            labelName='Campaign Title *'
+            placeholder='Write a title'
+            inputType='text'
+            value={form.title}
+            handleChange={(e) => handleFormFieldChange('title', e)}
+          />
+        </Suspense>
         <div className='flex flex-wrap gap-[40px]'>
-          <FormField
-            labelName='Your Name *'
-            placeholder='John Doe'
-            inputType='text'
-            value={form.name}
-            handleChange={(e) => handleFormFieldChange('name', e)}
-          />
-          <FormField
-            labelName='Category *'
-            placeholder='Select a Category'
-            inputType='text'
-            value={form.category}
-            handleChange={(e) => handleFormFieldChange('category', e)}
-          />
+          <Suspense fallback={null}>
+            <FormField
+              labelName='Your Name *'
+              placeholder='John Doe'
+              inputType='text'
+              value={form.name}
+              handleChange={(e) => handleFormFieldChange('name', e)}
+            />
+          </Suspense>
+          <Suspense fallback={null}>
+            <FormField
+              labelName='Category *'
+              placeholder='Select a Category'
+              inputType='text'
+              value={form.category}
+              handleChange={(e) => handleFormFieldChange('category', e)}
+            />
+          </Suspense>
         </div>
 
-        <FormField
-          labelName='Story *'
-          placeholder='Write your story'
-          isTextArea
-          value={form.description}
-          handleChange={(e) => handleFormFieldChange('description', e)}
-        />
+        <Suspense fallback={null}>
+          <FormField
+            labelName='Story *'
+            placeholder='Write your story'
+            isTextArea
+            value={form.description}
+            handleChange={(e) => handleFormFieldChange('description', e)}
+          />
+        </Suspense>
 
         <div
           className={
@@ -99,6 +114,7 @@ const CreateCampaign = () => {
           <img
             src={money}
             alt='money'
+            loading='lazy'
             className='w-[40px] h-[40px] object-contain'
           />
           <h4
@@ -112,39 +128,49 @@ const CreateCampaign = () => {
         <div className='flex flex-wrap gap-[40px]'>
           <div className='flex flex-col'>
             <div>
-              <FormField
-                labelName='Goal *'
-                placeholder='ETH 0.05'
-                inputType='number'
-                value={form.target}
-                handleChange={(e) => handleFormFieldChange('target', e)}
-              />
+              <Suspense fallback={null}>
+                <FormField
+                  labelName='Goal *'
+                  placeholder='ETH 0.05'
+                  inputType='number'
+                  value={form.target}
+                  handleChange={(e) => handleFormFieldChange('target', e)}
+                />
+              </Suspense>
             </div>
-            <EthereumPrice target={form.target} />
+            <Suspense fallback={null}>
+              <EthereumPrice target={form.target} />
+            </Suspense>
           </div>
-          <FormField
-            labelName='End Date *'
-            placeholder='End Date'
-            inputType='date'
-            value={form.deadline}
-            handleChange={(e) => handleFormFieldChange('deadline', e)}
-          />
+          <Suspense fallback={null}>
+            <FormField
+              labelName='End Date *'
+              placeholder='End Date'
+              inputType='date'
+              value={form.deadline}
+              handleChange={(e) => handleFormFieldChange('deadline', e)}
+            />
+          </Suspense>
         </div>
 
-        <FormField
-          labelName='Campaign image *'
-          placeholder='Place image URL of your campaign'
-          inputType='url'
-          value={form.image}
-          handleChange={(e) => handleFormFieldChange('image', e)}
-        />
+        <Suspense fallback={null}>
+          <FormField
+            labelName='Campaign image *'
+            placeholder='Place image URL of your campaign'
+            inputType='url'
+            value={form.image}
+            handleChange={(e) => handleFormFieldChange('image', e)}
+          />
+        </Suspense>
 
         <div className='flex justify-center items-center mt-[40px]'>
-          <CustomButton
-            btnType='submit'
-            title='Submit new campaign'
-            styles='bg-purple-main'
-          />
+          <Suspense fallback={null}>
+            <CustomButton
+              btnType='submit'
+              title='Submit new campaign'
+              styles='bg-purple-main'
+            />
+          </Suspense>
         </div>
       </form>
     </div>

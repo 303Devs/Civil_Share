@@ -1,11 +1,13 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import svgr from 'vite-plugin-svgr';
 import path from 'path';
 
 export default defineConfig({
   plugins: [
     react(),
+    svgr(),
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
@@ -69,21 +71,17 @@ export default defineConfig({
       },
     }),
   ],
-  // build: {
-  //   chunkSizeWarningLimit: 1000, // Optional: raise the warning limit if needed
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks(id) {
-  //         if (id.includes('node_modules')) {
-  //           if (id.includes('thirdweb')) {
-  //             return 'thirdweb';
-  //           }
-  //           if (id.includes('react-dom')) {
-  //             return 'react-dom';
-  //           }
-  //         }
-  //       },
-  //     },
-  //   },
-  // },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        // manualChunks(id) {
+        //   if (id.includes('node_modules')) {
+        //     if (id.includes('thirdweb')) return 'thirdweb';
+        //     if (id.includes('react-dom')) return 'react-dom';
+        //   }
+        // },
+      },
+    },
+  },
 });

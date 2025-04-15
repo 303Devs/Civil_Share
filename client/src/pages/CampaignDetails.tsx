@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useContractContext } from '../context/ContractContext';
-import { CustomButton, CountBox, Loader, SuccessMessage } from '../components';
+const Loader = React.lazy(() => import('../components/Loader'));
+const SuccessMessage = React.lazy(() => import('../components/SuccessMessage'));
+const CustomButton = React.lazy(() => import('../components/CustomButton'));
+import { CountBox } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { logo } from '../assets';
 
@@ -18,22 +21,31 @@ const CampaignDetails = () => {
 
   const [donators, setDonators] = useState<Donation[]>([]);
   const [creatorCampaigns, setCreatorCampaigns] = useState<Campaign[]>([]);
-  const remainingDays = daysLeft(state.deadline);
-
-  const percentToTarget = calculateBarPercentage(
-    state.target,
-    state.amountCollected
+  const remainingDays = useMemo(
+    () => daysLeft(state.deadline),
+    [state.deadline]
+  );
+  const percentToTarget = useMemo(
+    () => calculateBarPercentage(state.target, state.amountCollected),
+    [state.target, state.amountCollected]
   );
 
   const fetchDonators = async () => {
-    const data = await getDonations(state.pId);
-
-    setDonators(data);
+    try {
+      const data = await getDonations(state.pId);
+      setDonators(data);
+    } catch (err) {
+      console.error('Error fetching donators:', err);
+    }
   };
 
   const fetchCreatorCampaigns = async () => {
-    const data = await getUserCampaigns(state.owner);
-    setCreatorCampaigns(data);
+    try {
+      const data = await getUserCampaigns(state.owner);
+      setCreatorCampaigns(data);
+    } catch (err) {
+      console.error('Error fetching creator campaigns:', err);
+    }
   };
 
   useEffect(() => {
@@ -59,18 +71,25 @@ const CampaignDetails = () => {
 
   return (
     <div>
-      {isLoading && <Loader />}
+      {isLoading && (
+        <Suspense fallback={null}>
+          <Loader />
+        </Suspense>
+      )}
       {showSuccessModal && (
-        <SuccessMessage
-          percentToTarget={percentToTarget}
-          showModal={setShowSuccessModal}
-        />
+        <Suspense fallback={null}>
+          <SuccessMessage
+            percentToTarget={percentToTarget}
+            showModal={setShowSuccessModal}
+          />
+        </Suspense>
       )}
       <div className='w-full flex md:flex-row flex-col mt-10 gap-[30px]'>
         <div className='flex-1 flex-col'>
           <img
             src={state.image}
             alt={'campaign'}
+            loading='lazy'
             className='w-full h-[410px] object-contain rounded-xl'
           />
           <div className='relative w-full h-[5px] bg-black-2 mt-2'>
@@ -110,6 +129,7 @@ const CampaignDetails = () => {
                 <img
                   src={logo}
                   alt='user'
+                  loading='lazy'
                   className='w-[60%] h-[60%] object-cover'
                 />
               </div>
@@ -188,12 +208,14 @@ const CampaignDetails = () => {
                   satisfaction of knowing you helped bring this vision to life.
                 </p>
               </div>
-              <CustomButton
-                btnType='button'
-                title='Fund Campaign'
-                styles='w-full bg-light-purple'
-                handleClick={handleDonate}
-              />
+              <Suspense fallback={null}>
+                <CustomButton
+                  btnType='button'
+                  title='Fund Campaign'
+                  styles='w-full bg-light-purple'
+                  handleClick={handleDonate}
+                />
+              </Suspense>
             </div>
           </div>
         </div>

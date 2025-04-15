@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loader } from '../assets';
-import { FundCard } from './';
+
+const FundCard = React.lazy(() => import('./FundCard'));
 import { useContractContext } from '../context';
 
 type DisplayCampaignsProps = {
@@ -23,22 +24,25 @@ const DisplayCampaigns = ({
   const { searchTerm } = useContractContext();
   const [filter, setFilter] = useState<'all' | 'active' | 'expired'>('active');
 
-  const searchFilteredCampaigns = campaigns.filter((campaign) => {
+  const searchFilteredCampaigns = useMemo(() => {
     const query = searchTerm.toLowerCase();
-    return (
-      campaign.title.toLowerCase().includes(query.toLowerCase()) ||
-      campaign.description.toLowerCase().includes(query.toLowerCase()) ||
-      campaign.category.toLowerCase().includes(query.toLowerCase())
+    return campaigns.filter(
+      (campaign) =>
+        campaign.title.toLowerCase().includes(query) ||
+        campaign.description.toLowerCase().includes(query) ||
+        campaign.category.toLowerCase().includes(query)
     );
-  });
+  }, [campaigns, searchTerm]);
 
-  const now = Date.now();
-  const deadlineFiltered = campaigns.filter((campaign) => {
-    const deadline = Number(campaign.deadline);
-    if (filter === 'active') return deadline >= now;
-    if (filter === 'expired') return deadline < now;
-    return true;
-  });
+  const deadlineFiltered = useMemo(() => {
+    const now = Date.now();
+    return campaigns.filter((campaign) => {
+      const deadline = Number(campaign.deadline);
+      if (filter === 'active') return deadline >= now;
+      if (filter === 'expired') return deadline < now;
+      return true;
+    });
+  }, [campaigns, filter]);
 
   const finalCampaigns =
     searchTerm.trim().length > 0 ? searchFilteredCampaigns : deadlineFiltered;
@@ -80,15 +84,17 @@ const DisplayCampaigns = ({
           </p>
         )}
 
-        {!isLoading &&
-          finalCampaigns.length > 0 &&
-          finalCampaigns.map((campaign) => (
-            <FundCard
-              key={campaign.pId}
-              {...campaign}
-              handleClick={() => handleNavigate(campaign)}
-            />
-          ))}
+        {!isLoading && finalCampaigns.length > 0 && (
+          <Suspense fallback={<div className='text-white'>Loading...</div>}>
+            {finalCampaigns.map((campaign) => (
+              <FundCard
+                key={campaign.pId}
+                {...campaign}
+                handleClick={() => handleNavigate(campaign)}
+              />
+            ))}
+          </Suspense>
+        )}
       </div>
     </div>
   );

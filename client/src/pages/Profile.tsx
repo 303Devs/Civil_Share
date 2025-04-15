@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useContractContext } from '../context/ContractContext';
-import { DisplayCampaigns } from '../components';
+
+const DisplayCampaigns = React.lazy(
+  () => import('../components/DisplayCampaigns')
+);
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,20 +13,28 @@ const Profile = () => {
 
   const fetchUserCampaigns = async () => {
     setIsLoading(true);
-    const data = await getUserCampaigns();
-    setCampaigns(data);
-    setIsLoading(false);
+    try {
+      const data = await getUserCampaigns();
+      setCampaigns(data);
+    } catch (err) {
+      console.error('Error fetching user campaigns:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
     if (contract) fetchUserCampaigns();
   }, [account, contract]);
+
   return (
-    <DisplayCampaigns
-      title={'My Campaigns'}
-      isLoading={isLoading}
-      campaigns={campaigns}
-    />
+    <Suspense fallback={<div className='text-white'>Loading campaigns...</div>}>
+      <DisplayCampaigns
+        title={'My Campaigns'}
+        isLoading={isLoading}
+        campaigns={campaigns}
+      />
+    </Suspense>
   );
 };
 

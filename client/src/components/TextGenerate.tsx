@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { motion, stagger, useAnimate } from 'motion/react';
 import { cn } from '../lib/utils';
 
-export const TextGenerate = ({
+const TextGenerate = ({
   words,
   className,
   filter = true,
@@ -21,14 +21,14 @@ export const TextGenerate = ({
       'span',
       {
         opacity: 1,
-        filter: filter ? 'blur(0px)' : 'none',
+        filter: 'blur(0px)',
       },
       {
         duration: duration ? duration : 1,
         delay: stagger(0.2),
       }
     );
-  }, [scope.current]);
+  }, []);
 
   const renderWords = () => {
     return (
@@ -37,9 +37,10 @@ export const TextGenerate = ({
           return (
             <motion.span
               key={word + idx}
-              className='text-purple-main opacity-0 font-semibold font-mono'
+              className='text-neutral-200 opacity-0 font-semibold font-mono'
               style={{
-                filter: filter ? 'blur(10px)' : 'none',
+                filter: filter ? 'blur(4px)' : 'none',
+                willChange: 'opacity, filter',
               }}>
               {word}{' '}
             </motion.span>
@@ -59,3 +60,5 @@ export const TextGenerate = ({
     </div>
   );
 };
+
+export default TextGenerate;

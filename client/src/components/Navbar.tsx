@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useActivePageContext, useContractContext } from '../context';
-import { WalletButton, TextGenerate } from './';
+const TextGenerate = React.lazy(() => import('./TextGenerate'));
+const WalletButton = React.lazy(() => import('./WalletButton'));
 import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
 
@@ -37,7 +38,9 @@ const Navbar = () => {
 
   const Wallet = () => (
     <div className='flex flex-row gap-4'>
-      <WalletButton />
+      <Suspense fallback={<div />}>
+        <WalletButton />
+      </Suspense>
       <Link
         to='/profile'
         onClick={() => setActivePage('profile')}>
@@ -60,10 +63,12 @@ const Navbar = () => {
       {/* Large screen navigation */}
       <div className='hidden lg:flex w-full flex-row justify-between items-center pb-12'>
         <h1 className='h-fit w-full'>
-          <TextGenerate
-            words={title}
-            className='relative -mt-2 pb-2'
-          />
+          <Suspense fallback={<div />}>
+            <TextGenerate
+              words={title}
+              className='relative -mt-2 pb-2'
+            />
+          </Suspense>
         </h1>
         <div className='w-[60%] pr-4'>
           <SearchBar handleSearch={handleSearch} />
@@ -75,10 +80,12 @@ const Navbar = () => {
       <div className='hidden sm:flex lg:hidden w-full flex-col justify-between pb-12'>
         <div className='flex flex-row justify-between pb-8'>
           <h1 className='h-fit'>
-            <TextGenerate
-              words={title}
-              className='relative -mt-2 pb-2'
-            />
+            <Suspense fallback={<div />}>
+              <TextGenerate
+                words={title}
+                className='relative -mt-2 pb-2'
+              />
+            </Suspense>
           </h1>
           <Wallet />
         </div>
@@ -96,10 +103,12 @@ const Navbar = () => {
             />
           </div>
           <h1>
-            <TextGenerate
-              words={title}
-              className='pb-4'
-            />
+            <Suspense fallback={<div />}>
+              <TextGenerate
+                words={title}
+                className='pb-4'
+              />
+            </Suspense>
           </h1>
           <img
             src={menu}
@@ -138,7 +147,9 @@ const Navbar = () => {
             ))}
           </ul>
           <div className='flex mx-4'>
-            <WalletButton />
+            <Suspense fallback={<div />}>
+              <WalletButton />
+            </Suspense>
           </div>
         </div>
       </div>
