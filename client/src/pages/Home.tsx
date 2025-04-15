@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Lamp, MagicButton, TextGenerate } from '../components';
 
-import logo from '../assets/logo.svg';
-import diamond from '../assets/diamond.png';
+import logo from '../assets/logo.webp';
 
 export function Home() {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ export function Home() {
     <div>
       <Lamp>
         <img
-          src={diamond}
+          src={logo}
           width={200}
           height={200}
         />

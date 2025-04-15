@@ -29,7 +29,7 @@ const Icon: React.FC<IconProps> = ({
         <img
           src={imgUrl}
           alt='fund_logo'
-          className='w-1/2 h-1/2'
+          className='w-[48px] h-[48px]'
         />
       : <img
           src={imgUrl}
@@ -49,7 +49,7 @@ const Sidebar = () => {
     <div className='flex justify-between items-center flex-col sticky top-5 h-[93vh]'>
       <Link
         to='/'
-        onClick={() => setActivePage('dashboard')}>
+        onClick={() => setActivePage('home')}>
         <Icon
           styles='w-[52px] h-[52px] bg-bg-1'
           imgUrl={logo}

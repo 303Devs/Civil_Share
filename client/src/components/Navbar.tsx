@@ -35,6 +35,22 @@ const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const title = 'Civil Share';
 
+  const Wallet = () => (
+    <div className='flex flex-row gap-4'>
+      <WalletButton />
+      <Link
+        to='/profile'
+        onClick={() => setActivePage('profile')}>
+        <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
+          <img
+            src={logo}
+            alt='user'
+            className='object-contain'
+          />
+        </div>
+      </Link>
+    </div>
+  );
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
@@ -52,20 +68,7 @@ const Navbar = () => {
         <div className='w-[60%] pr-4'>
           <SearchBar handleSearch={handleSearch} />
         </div>
-        <div className='flex flex-row gap-4'>
-          <WalletButton />
-          <Link
-            to='/profile'
-            onClick={() => setActivePage('profile')}>
-            <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
-              <img
-                src={logo}
-                alt='user'
-                className='w-[60%] h-[60%] object-contain'
-              />
-            </div>
-          </Link>
-        </div>
+        <Wallet />
       </div>
 
       {/* Sm and Md screen navigation */}
@@ -77,20 +80,7 @@ const Navbar = () => {
               className='relative -mt-2 pb-2'
             />
           </h1>
-          <div className='flex flex-row gap-4'>
-            <WalletButton />
-            <Link
-              to='/profile'
-              onClick={() => setActivePage('profile')}>
-              <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
-                <img
-                  src={logo}
-                  alt='user'
-                  className='w-[60%] h-[60%] object-contain'
-                />
-              </div>
-            </Link>
-          </div>
+          <Wallet />
         </div>
         <SearchBar handleSearch={handleSearch} />
       </div>
