@@ -29,7 +29,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 5000000, // 5MB for large files like vendor bundles
+        maximumFileSizeToCacheInBytes: 5000000,
         runtimeCaching: [
           {
             urlPattern:
@@ -40,33 +40,6 @@ export default defineConfig({
               expiration: {
                 maxEntries: 30,
                 maxAgeSeconds: 60,
-              },
-            },
-          },
-          {
-            urlPattern: /\.(?:png|jpg|jpeg|svg|webp|gif)$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'image-cache',
-              expiration: {
-                maxEntries: 60,
-                maxAgeSeconds: 60 * 60 * 24 * 7,
-              },
-            },
-          },
-          {
-            urlPattern: ({ request, url }) =>
-              request.mode === 'navigate' &&
-              !url.pathname.startsWith('/_') &&
-              !url.pathname.match(
-                /\.(js|css|ts|tsx|png|jpg|jpeg|svg|webp|json)$/
-              ),
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'html-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24,
               },
             },
           },
@@ -92,33 +65,25 @@ export default defineConfig({
               },
             },
           },
-          {
-            urlPattern: /\/ipfs\/.*\.json$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'ipfs-json-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 10,
-              },
-            },
-          },
         ],
       },
     }),
   ],
-  build: {
-    chunkSizeWarningLimit: 1000, // Optional: raise the warning limit if needed
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            const dirs = id.toString().split('node_modules/')[1].split('/');
-            // Handles both scoped and unscoped packages
-            return dirs[0].startsWith('@') ? `${dirs[0]}/${dirs[1]}` : dirs[0];
-          }
-        },
-      },
-    },
-  },
+  // build: {
+  //   chunkSizeWarningLimit: 1000, // Optional: raise the warning limit if needed
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks(id) {
+  //         if (id.includes('node_modules')) {
+  //           if (id.includes('thirdweb')) {
+  //             return 'thirdweb';
+  //           }
+  //           if (id.includes('react-dom')) {
+  //             return 'react-dom';
+  //           }
+  //         }
+  //       },
+  //     },
+  //   },
+  // },
 });

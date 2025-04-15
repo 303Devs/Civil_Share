@@ -1,13 +1,19 @@
 import React, { createContext, useContext, useState } from 'react';
 import {
-  prepareContractCall,
+  // prepareContractCall,
   createThirdwebClient,
   getContract,
-  toEther,
-  readContract,
-  toWei,
-  sendAndConfirmTransaction,
+  // toEther,
+  // readContract,
+  // toWei,
+  // sendAndConfirmTransaction,
 } from 'thirdweb';
+import {
+  prepareContractCall,
+  readContract,
+  sendAndConfirmTransaction,
+} from 'thirdweb/transaction';
+import { toEther, toWei } from 'thirdweb/utils';
 import { base } from 'thirdweb/chains';
 import { Account } from 'thirdweb/dist/types/exports/wallets.native';
 
