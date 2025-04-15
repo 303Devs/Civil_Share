@@ -13,11 +13,10 @@ export const ActivePageContextProvider = ({
     // let path = pathname.slice(1)
 
     if (pathname === '/') {
-      setIsActive('dashboard')
+      setIsActive('home');
     } else {
-      setIsActive(pathname.slice(1))
+      setIsActive(pathname.slice(1));
     }
-
   }, []);
 
   const setActivePage = (page: string) => setIsActive(page);

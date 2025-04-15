@@ -41,7 +41,7 @@ export function Home() {
             }
             position={'left'}
             handleClick={() => {
-              navigate('/campaigns');
+              navigate('/dashboard');
             }}
             otherClasses={'text-neutral-200'}
           />

@@ -4,7 +4,7 @@ import { Navbar, Sidebar } from './components';
 import {
   CampaignDetails,
   CreateCampaign,
-  Campaigns,
+  Dashboard,
   Profile,
   Home,
   TermsOfService,
@@ -34,8 +34,8 @@ const App = () => {
             element={<Home />}
           />
           <Route
-            path='/campaigns'
-            element={<Campaigns />}
+            path='/dashboard'
+            element={<Dashboard />}
           />
           <Route
             path='/profile'

@@ -26,8 +26,9 @@ const DisplayCampaigns = ({
   const searchFilteredCampaigns = campaigns.filter((campaign) => {
     const query = searchTerm.toLowerCase();
     return (
-      campaign.title.toLowerCase().includes(query) ||
-      campaign.description.toLowerCase().includes(query)
+      campaign.title.toLowerCase().includes(query.toLowerCase()) ||
+      campaign.description.toLowerCase().includes(query.toLowerCase()) ||
+      campaign.category.toLowerCase().includes(query.toLowerCase())
     );
   });
 
@@ -46,7 +47,7 @@ const DisplayCampaigns = ({
     <div>
       <div className='flex flex-col'>
         <div className='flex flex-row'>
-          <h2 className='font-epilogue font-semibold text-[18px] text-white text-left pr-2'>
+          <h2 className='font-epilogue font-semibold text-[18px] text-white text-left pr-8'>
             {title} ({finalCampaigns.length})
           </h2>
           <select

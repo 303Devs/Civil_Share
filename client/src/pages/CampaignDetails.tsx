@@ -9,13 +9,15 @@ import { logo } from '../assets';
 const CampaignDetails = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { getDonations, donate, contract, account } = useContractContext();
+  const { getDonations, getUserCampaigns, donate, contract, account } =
+    useContractContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [amount, setAmount] = useState('');
-  const [donators, setDonators] = useState<Donation[]>([]);
 
+  const [donators, setDonators] = useState<Donation[]>([]);
+  const [creatorCampaigns, setCreatorCampaigns] = useState<Campaign[]>([]);
   const remainingDays = daysLeft(state.deadline);
 
   const percentToTarget = calculateBarPercentage(
@@ -29,12 +31,20 @@ const CampaignDetails = () => {
     setDonators(data);
   };
 
+  const fetchCreatorCampaigns = async () => {
+    const data = await getUserCampaigns(state.owner);
+    setCreatorCampaigns(data);
+  };
+
   useEffect(() => {
     if (percentToTarget >= 100) setShowSuccessModal(true);
   }, [percentToTarget]);
 
   useEffect(() => {
-    if (contract) fetchDonators();
+    if (contract) {
+      fetchDonators();
+      fetchCreatorCampaigns();
+    }
   }, [contract, account]);
 
   const handleDonate = async () => {
@@ -108,7 +118,7 @@ const CampaignDetails = () => {
                   {state.owner}
                 </h4>
                 <p className='mt-[4px] font-epilogue font-normal text-[12px] text-primary-text'>
-                  10 Campaigns
+                  {creatorCampaigns.length} Campaigns
                 </p>
               </div>
             </div>
@@ -135,10 +145,10 @@ const CampaignDetails = () => {
                   <div
                     key={`${item.donator}-${index}`}
                     className='flex justify-between items-center gap-4'>
-                    <p className='font-epilogue font-normal w-[75%] text-[16px] text-tertiary-text leading-[26px] break-all'>
+                    <p className='font-epilogue font-normal w-[70%] text-[16px] text-tertiary-text leading-[26px] break-all'>
                       {index + 1}. {item.donator}
                     </p>
-                    <p className='font-epilogue font-normal text-[16px] text-primary-text leading-[26px] break-all'>
+                    <p className='w-fit font-epilogue font-normal text-[16px] text-primary-text leading-[26px]'>
                       {`${item.donation} ETH`}
                     </p>
                   </div>
