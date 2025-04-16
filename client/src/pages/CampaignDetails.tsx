@@ -7,7 +7,6 @@ const SuccessMessage = React.lazy(() => import('../components/SuccessMessage'));
 const CustomButton = React.lazy(() => import('../components/CustomButton'));
 import { CountBox } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { logo } from '../../public/icons';
 import { ToastContainer, toast } from 'react-toastify';
 
 const CampaignDetails = () => {
@@ -138,7 +137,7 @@ const CampaignDetails = () => {
             <div className='mt-[20px] flex flex-row items-center flex-wrap gap-[14px]'>
               <div className='w-[52px] h-[52px] flex items-center justify-center rounded-full bg-grey-1 cursor-pointer'>
                 <img
-                  src={logo}
+                  src={'/logo.svg'}
                   alt='user'
                   loading='lazy'
                   className='w-[60%] h-[60%] object-cover'

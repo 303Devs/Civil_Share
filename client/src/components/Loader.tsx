@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { loader } from '../../public/icons';
-
 const Loader = () => {
   return (
     <div className='fixed inset-0 z-10 h-screen bg-modal-bg flex items-center justify-center flex-col'>
       <img
-        src={loader}
+        src={'/icons/loader'}
         alt='loader'
         className='w-[100px] h-[100px] object-contain'
       />

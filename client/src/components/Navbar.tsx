@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useActivePageContext, useContractContext } from '../context';
 const TextGenerate = React.lazy(() => import('./TextGenerate'));
 const WalletButton = React.lazy(() => import('./WalletButton'));
-import { logo, menu, search } from '../../public/icons';
+
 import { navlinks } from '../constants';
 
 interface SearchBarProps {
@@ -21,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => (
     />
     <div className='w-[72px] h-full rounded-[20px] bg-purple-main flex justify-center items-center cursor-pointer'>
       <img
-        src={search}
+        src={'/icons/search.svg'}
         alt='search'
         className='w-[15px] h-[15px] object-contain'
       />
@@ -47,7 +47,7 @@ const Navbar = () => {
       >
         <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
           <img
-            src={logo}
+            src={'/logo.svg'}
             alt='user'
             height={30}
             width={30}
@@ -100,7 +100,7 @@ const Navbar = () => {
         <div className='flex justify-between items-center relative'>
           <div className='w-[40px] h-[40px] rounded-[10px] bg-black-1 flex justify-center items-center cursor-pointer'>
             <img
-              src={logo}
+              src={'/logo.svg'}
               alt='user'
               className='w-[60%] h-[60%] object-contain'
             />
@@ -114,7 +114,7 @@ const Navbar = () => {
             </Suspense>
           </h1>
           <img
-            src={menu}
+            src={'/icons/menu.svg'}
             alt='menu'
             className='w-[34px] h-[34px] object-contain cursor-pointer'
             onClick={() => setToggleDrawer((prev) => !prev)}

@@ -1,6 +1,5 @@
 import React, { MouseEventHandler, useMemo } from 'react';
 
-import { tagType, logo } from '../../public/icons';
 import { daysLeft } from '../utils';
 
 const StatBlock = ({ label, value }: { label: string; value: string }) => (
@@ -51,7 +50,7 @@ const FundCard = React.memo(
         <div className='flex flex-col p-4'>
           <div className='flex flex-row items-center mb-[18px]'>
             <img
-              src={tagType}
+              src={'/icons/type.svg'}
               alt='tag'
               loading='lazy'
               className='w-[17px] h-[17px] object-contain'
@@ -87,7 +86,7 @@ const FundCard = React.memo(
           <div className='flex items-center mt-[20px] gap-[12px]'>
             <div className='w-[30px] h-[30px] rounded-full flex justify-center items-center bg-black-bg'>
               <img
-                src={logo}
+                src={'/logo.svg'}
                 alt='user'
                 loading='lazy'
                 className='w-1/2 h-1/2 object-contain'

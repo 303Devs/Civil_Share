@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useActivePageContext } from '../context';
-import { logo, sun } from '../../public/icons';
 import { navlinks } from '../constants';
 
 interface IconProps {
@@ -59,7 +58,7 @@ const Sidebar = () => {
       >
         <Icon
           styles='w-[48px] h-[48px] bg-bg-1'
-          imgUrl={logo}
+          imgUrl={'/logo.svg'}
           name='home'
         />
       </Link>
@@ -83,7 +82,7 @@ const Sidebar = () => {
 
         <Icon
           styles='bg-black-1 shadow-secondary'
-          imgUrl={sun}
+          imgUrl={'/icons/sun.svg'}
           name='theme'
           isActive={isActive}
         />

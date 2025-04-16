@@ -2,7 +2,6 @@ import React, { useState, Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useContractContext } from '../context';
-import { money } from '../../public/icons';
 const CustomButton = lazy(() => import('../components/CustomButton'));
 const FormField = lazy(() => import('../components/FormField'));
 const Loader = lazy(() => import('../components/Loader'));
@@ -114,7 +113,7 @@ const CreateCampaign = () => {
           }
         >
           <img
-            src={money}
+            src={'/icons/money.svg'}
             alt='money'
             loading='lazy'
             className='w-[40px] h-[40px] object-contain'

@@ -1,6 +1,5 @@
 import React, { useState, Suspense, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loader } from '../../public/icons';
 
 const FundCard = React.lazy(() => import('./FundCard'));
 import { useContractContext } from '../context';
@@ -80,7 +79,7 @@ const DisplayCampaigns = ({
       <div className='flex flex-wrap mt-[20px] gap-[26px]'>
         {isLoading && (
           <img
-            src={loader}
+            src={'/icons/loader'}
             alt='loader'
             className='w-[100px] h-[100px] object-contain'
           />

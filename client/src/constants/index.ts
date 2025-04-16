@@ -1,43 +1,34 @@
-import {
-  createCampaign,
-  dashboard,
-  logout,
-  payment,
-  profile,
-  withdraw,
-} from '../../public/icons';
-
 export const navlinks = [
   {
     name: 'dashboard',
-    imgUrl: dashboard,
+    imgUrl: '/icons/dashboard.svg',
     link: '/dashboard',
   },
   {
     name: 'campaign',
-    imgUrl: createCampaign,
+    imgUrl: '/icons/create_campaign.svg',
     link: '/create-campaign',
   },
   {
     name: 'payment',
-    imgUrl: payment,
+    imgUrl: '/icons/payment.svg',
     link: '/',
     disabled: true,
   },
   {
     name: 'withdraw',
-    imgUrl: withdraw,
+    imgUrl: '/icons/withdraw.svg',
     link: '/',
     disabled: true,
   },
   {
     name: 'profile',
-    imgUrl: profile,
+    imgUrl: '/icons/profile.svg',
     link: '/profile',
   },
   {
     name: 'logout',
-    imgUrl: logout,
+    imgUrl: '/icons/logout.svg',
     link: '/',
     disabled: true,
   },
