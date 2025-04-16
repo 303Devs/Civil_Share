@@ -4,7 +4,7 @@ import { Navbar, Sidebar } from './components';
 import { Home } from './pages';
 import { Analytics } from '@vercel/analytics/react';
 
-const isProd = import.meta.env.MODE !== 'production';
+const isProd = import.meta.env.MODE === 'production';
 
 const CampaignDetails = React.lazy(() => import('./pages/CampaignDetails'));
 const CreateCampaign = React.lazy(() => import('./pages/CreateCampaign'));
