@@ -1,4 +1,4 @@
 interface ActivePageContextType {
   isActive: string;
-  setActivePage: (string) => void;
+  setActivePage: (_string) => void;
 }

@@ -1,13 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 interface CustomButtonProps {
-  btnType: 'submit' | 'reset' | 'button' | undefined
-  title: string
-  styles?: string
+  btnType: 'submit' | 'reset' | 'button' | undefined;
+  title: string;
+  styles?: string;
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ btnType, title, styles, handleClick }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({
+  btnType,
+  title,
+  styles,
+  handleClick,
+}) => {
   return (
     <button
       type={btnType}
@@ -16,7 +21,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ btnType, title, styles, han
     >
       {title}
     </button>
-  )
-}
+  );
+};
 
-export default CustomButton
+export default CustomButton;

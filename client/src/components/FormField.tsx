@@ -7,7 +7,7 @@ interface FormFieldProps {
   isTextArea?: boolean;
   value: string;
   handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    _e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 }
 

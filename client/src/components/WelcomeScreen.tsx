@@ -32,7 +32,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ title, img }) => {
         <div className='h-4' />
         <Link
           to='/learn-more'
-          className='text-sm text-center text-blue-500 max-w-[250px] underline'>
+          className='text-sm text-center text-blue-500 max-w-[250px] underline'
+        >
           Explore our social, email, phone, and passkey login options.
         </Link>
         <div className='h-6' />
@@ -40,7 +41,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ title, img }) => {
           to='https://blog.thirdweb.com/web3-wallet/'
           target='_blank'
           rel='noopener noreferrer'
-          className='text-blue-500 underline'>
+          className='text-blue-500 underline'
+        >
           New to wallets?
         </Link>
       </div>
@@ -52,13 +54,15 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ title, img }) => {
             By connecting, you agree to the{' '}
             <Link
               to='/terms'
-              className='whitespace-nowrap text-blue-500 underline'>
+              className='whitespace-nowrap text-blue-500 underline'
+            >
               Terms of Service
             </Link>
             {' & '}
             <Link
               to='/privacy'
-              className='text-blue-500 underline'>
+              className='text-blue-500 underline'
+            >
               Privacy Policy
             </Link>
           </span>

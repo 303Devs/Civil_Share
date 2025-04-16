@@ -1,65 +1,114 @@
+# 🌍 Civil Share
 
-![tw-banner](https://github.com/thirdweb-example/vite-starter/assets/57885104/cfe2164b-b50b-4d8e-aaaa-31331da2d647)
+**Civil Share** is a decentralized crowdfunding platform live on the [Base network](https://base.org), designed to empower individuals and communities through transparent, direct support. Whether you're backing a Web3 initiative, a community project, or a creative idea, Civil Share ensures every contribution reaches the campaign founder — without intermediaries.
 
-# vite-starter
+---
 
-Starter template to build onchain applications with [thirdweb](https://thirdweb.com) and [vite](https://vitejs.dev/). 
+## 🚀 Features
 
-## Features 
+- ✅ 100% of donations go directly to the campaign founder
+- 🔗 Live on [Base L2](https://base.org)
+- 💳 WalletConnect support for fast, secure crypto donations
+- 🧠 Built with modern React, Vite 6, Tailwind CSS, and Thirdweb
+- 🔒 PWA enabled — install it on your device!
+- 📱 Responsive UI and smooth user experience
 
-- thirdweb & vite pre-installed and configured to reduce setup steps
-- ConnectButton to onboard users to your application
+---
 
-## Installation
+## 🛠 Tech Stack
 
-Install the template using [thirdweb create](https://portal.thirdweb.com/cli/create)
+- **Frontend:** React 19, TypeScript, Tailwind CSS, Vite 6
+- **Blockchain:** Thirdweb SDK, EVM-compatible smart contracts
+- **Routing:** React Router v7
+- **Tooling:** ESLint (flat config), Prettier, PWA support
 
-```bash
-  npx thirdweb create app --vite
-```
+---
 
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file:
-
-`CLIENT_ID`
-
-To learn how to create a client ID, refer to the [client documentation](https://portal.thirdweb.com/typescript/v5/client). 
-
-## Run locally
-
-Install dependencies
+## 🧪 Local Development
 
 ```bash
-yarn
+# Clone the repo
+git clone https://github.com/your-org/civil-share.git
+cd client
+
+# Install dependencies
+npm install
+
+# Run the dev server
+npm run dev
 ```
 
-Start development server
+---
+
+## 📦 Production Build
 
 ```bash
-yarn dev
+# Build
+npm run build
+
+# Preview build locally
+npm run preview
 ```
 
-Create a production build
+---
 
-```bash
-yarn build
+## 📁 Folder Structure
+
+```
+└── 📁client
+    └── 📁public
+    └── 📁src
+        └── App.tsx
+        └── 📁assets
+        └── 📁components
+        └── 📁constants
+        └── 📁context
+        └── index.css
+        └── 📁lib
+        └── main.tsx
+        └── 📁pages
+        └── 📁types
+
+        └── 📁utils
+    └── .gitignore
+    └── .prettierignore
+    └── .prettierrc
+    └── eslint.config.mjs
+    └── index.html
+    └── package-lock.json
+    └── package.json
+    └── postcss.config.cjs
+    └── README.md
+    └── tsconfig.json
+    └── tsconfig.node.json
+    └── vercel.json
+    └── vite.config.ts
 ```
 
-Preview the production build
+---
 
-```bash
-yarn preview
+## 🔐 Smart Contract Address
+
+```
+0xE48F250676bc94D35dF83f645942181Fd77892B6
 ```
 
-## Additional Resources
+---
 
-- [Documentation](https://portal.thirdweb.com/typescript/v5)
-- [Templates](https://thirdweb.com/templates)
-- [YouTube](https://www.youtube.com/c/thirdweb)
-- [Blog](https://blog.thirdweb.com)
+## 🌐 Deployment
 
-## Need help?
+Civil Share is live at:  
+👉 [https://share.civilprotocol.io](https://share.civilprotocol.io)
 
-For help or feedback, please [visit our support site](https://thirdweb.com/support)
-# Civil_Share
+---
+
+## ✨ Part of the Civil Protocol Ecosystem
+
+Civil Share is a core application in the **Civil Protocol** ecosystem — a decentralized suite of tools for empowering communities through open collaboration, transparent fundraising, and on-chain governance.
+
+---
+
+## 🤝 Acknowledgements
+
+Powered by **303Devs**  
+Special thanks to the open-source community.

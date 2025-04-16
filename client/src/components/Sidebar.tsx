@@ -33,7 +33,8 @@ const IconComponent: React.FC<IconProps> = ({
       className={`w-[48px] h-[48px] rounded-[10px] flex justify-center items-center ${
         isCurrentlyActive ? 'bg-black-1' : ''
       } ${!disabled ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'} ${styles}`}
-      onClick={!disabled ? handleClick : undefined}>
+      onClick={!disabled ? handleClick : undefined}
+    >
       <img
         src={imgUrl}
         alt='logo'
@@ -54,7 +55,8 @@ const Sidebar = () => {
     <div className='flex justify-between items-center flex-col sticky top-5 h-[93vh]'>
       <Link
         to='/'
-        onClick={() => setActivePage('home')}>
+        onClick={() => setActivePage('home')}
+      >
         <Icon
           styles='w-[48px] h-[48px] bg-bg-1'
           imgUrl={logo}

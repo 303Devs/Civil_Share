@@ -20,7 +20,20 @@ const SuccessMessage = ({
           width={width}
           height={height}
           recycle={true}
-          colors={['#13131a', '#1c1c24', '#3a3a43', '#8c6dfd',  '#1dc071', '#4acd8b', '#2c2f32', '#28282e', '#808191', '#818183', '#4b5264', '#b2b3bd']}
+          colors={[
+            '#13131a',
+            '#1c1c24',
+            '#3a3a43',
+            '#8c6dfd',
+            '#1dc071',
+            '#4acd8b',
+            '#2c2f32',
+            '#28282e',
+            '#808191',
+            '#818183',
+            '#4b5264',
+            '#b2b3bd',
+          ]}
         />
       </div>
       <p className='font-epilogue font-bold text-3xl text-center text-white w-[65%] leading-[42px]'>

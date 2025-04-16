@@ -66,7 +66,8 @@ const CreateCampaign = () => {
 
       <form
         onSubmit={handleSubmit}
-        className='w-full mt-[65px] flex flex-col gap-[30px]'>
+        className='w-full mt-[65px] flex flex-col gap-[30px]'
+      >
         <Suspense fallback={null}>
           <FormField
             labelName='Campaign Title *'
@@ -110,7 +111,8 @@ const CreateCampaign = () => {
         <div
           className={
             'w-full flex justify-start items-center p-4 h-[120px] bg-light-purple rounded-[10px]'
-          }>
+          }
+        >
           <img
             src={money}
             alt='money'
@@ -120,7 +122,8 @@ const CreateCampaign = () => {
           <h4
             className={
               'font-epilogue font-bold text-[25px] text-white ml-[20px]'
-            }>
+            }
+          >
             You will get 100% of the raised amount
           </h4>
         </div>

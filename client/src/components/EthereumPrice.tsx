@@ -341,21 +341,19 @@ const EthereumPrice: React.FC<EthereumPriceProps> = ({ target }) => {
     ],
   });
 
-  // Read the latest price data from the contract
-  const getEthPrice = async () => {
-    const priceData = await readContract({
-      contract,
-      method: `latestAnswer`,
-    });
-    const ethToUsd = (Number(priceData) / 10 ** 8).toFixed(2);
-    setEthPrice(Number(ethToUsd));
-    console.log(Number(ethToUsd));
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const getEthPrice = async () => {
+      const priceData = await readContract({
+        contract,
+        method: `latestAnswer`,
+      });
+      const ethToUsd = (Number(priceData) / 10 ** 8).toFixed(2);
+      setEthPrice(Number(ethToUsd));
+      setIsLoading(false);
+    };
+
     getEthPrice();
-  }, []);
+  }, [contract]);
 
   if (isLoading) {
     return <div className='text-primary-text'>Loading Ethereum price...</div>;

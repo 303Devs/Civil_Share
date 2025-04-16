@@ -27,7 +27,8 @@ const LearnMore = () => {
               href='https://portal.thirdweb.com/connect/wallet/sign-in-methods/configure'
               target='_blank'
               rel='noopener noreferrer'
-              className='text-blue-500 underline'>
+              className='text-blue-500 underline'
+            >
               this guide
             </a>
             .
@@ -57,7 +58,8 @@ const LearnMore = () => {
               href='https://portal.thirdweb.com/connect/wallet/security'
               target='_blank'
               rel='noopener noreferrer'
-              className='text-blue-500 underline'>
+              className='text-blue-500 underline'
+            >
               here
             </a>
             .
@@ -84,7 +86,8 @@ const LearnMore = () => {
               href='https://portal.thirdweb.com/connect/wallet/in-app-wallet/faq'
               target='_blank'
               rel='noopener noreferrer'
-              className='text-blue-500 underline'>
+              className='text-blue-500 underline'
+            >
               this FAQ
             </a>
             .

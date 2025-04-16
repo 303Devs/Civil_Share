@@ -13,16 +13,16 @@ interface ContractContextType {
   client: ThirdwebClient | null;
   account: Account | null;
   contract: Contract | undefined;
-  setActiveAccount: (account: Account) => void;
-  publishCampaign: (form: Form) => Promise<TransactionHash>;
+  setActiveAccount: (_account: Account) => void;
+  publishCampaign: (_form: Form) => Promise<TransactionHash>;
   getCampaigns: () => Promise<Campaign[]>;
-  getUserCampaigns: (address?: string) => Promise<Campaign[]>;
-  donate: (pId: bigint, amount: string) => Promise<TransactionHash>;
+  getUserCampaigns: (_address?: string) => Promise<Campaign[]>;
+  donate: (_pId: bigint, _amount: string) => Promise<TransactionHash>;
   getDonations: (
-    pId: bigint
+    _pId: bigint
   ) => Promise<{ donator: string; donation: string }[]>;
   searchTerm: string;
-  setSearchTerm: (term: string) => void;
+  setSearchTerm: (_term: string) => void;
 }
 
 interface ContextProviderProps {

@@ -3,6 +3,17 @@ import React, { MouseEventHandler, useMemo } from 'react';
 import { tagType, logo } from '../assets';
 import { daysLeft } from '../utils';
 
+const StatBlock = ({ label, value }: { label: string; value: string }) => (
+  <div className='flex flex-col'>
+    <h4 className='font-epilogue font-semibold text-[14px] text-tertiary-text leading-[22px]'>
+      {value}
+    </h4>
+    <p className='mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-primary-text sm:max-w-[120px] truncate'>
+      {label}
+    </p>
+  </div>
+);
+
 interface FundCardProps extends Campaign {
   handleClick: MouseEventHandler;
 }
@@ -26,12 +37,15 @@ const FundCard = React.memo(
     return (
       <div
         className='sm:w-[288px] w-full rounded-[15px] bg-black-1 cursor-pointer'
-        onClick={handleClick}>
+        onClick={handleClick}
+      >
         <img
           src={image}
           alt='fund'
           loading='lazy'
-          className='w-full h-[158px] object-cover rounded-[15px]'
+          width='288'
+          height='288'
+          className='w-full object-cover rounded-[15px]'
         />
 
         <div className='flex flex-col p-4'>
@@ -57,25 +71,17 @@ const FundCard = React.memo(
           </div>
 
           <div className='flex justify-between flex-wrap mt-[15px] gap-2'>
-            <div className='flex flex-col'>
-              <h4 className='font-epilogue font-semibold text-[14px] text-tertiary-text leading-[22px]'>
-                {amountCollected}
-              </h4>
-              <p className='mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-primary-text sm:max-w-[120px] truncate'>
-                Raised of {target}
-              </p>
-            </div>
+            <StatBlock
+              label={`Raised of ${target}`}
+              value={amountCollected}
+            />
           </div>
 
           <div className='flex justify-between flex-wrap mt-[15px] gap-2'>
-            <div className='flex flex-col'>
-              <h4 className='font-epilogue font-semibold text-[14px] text-tertiary-text leading-[22px]'>
-                {remainingDays}
-              </h4>
-              <p className='mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-primary-text sm:max-w-[120px] truncate'>
-                Days Left
-              </p>
-            </div>
+            <StatBlock
+              label='Days Left'
+              value={remainingDays.toString()}
+            />
           </div>
 
           <div className='flex items-center mt-[20px] gap-[12px]'>

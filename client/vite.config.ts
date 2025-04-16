@@ -1,10 +1,8 @@
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
-import path from 'path';
 
-export default defineConfig({
+export default {
   plugins: [
     react(),
     svgr(),
@@ -84,4 +82,4 @@ export default defineConfig({
       },
     },
   },
-});
+};

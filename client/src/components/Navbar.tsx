@@ -8,7 +8,7 @@ import { logo, menu, search } from '../assets';
 import { navlinks } from '../constants';
 
 interface SearchBarProps {
-  handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSearch: (_e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => (
@@ -43,7 +43,8 @@ const Navbar = () => {
       </Suspense>
       <Link
         to='/profile'
-        onClick={() => setActivePage('profile')}>
+        onClick={() => setActivePage('profile')}
+      >
         <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
           <img
             src={logo}
@@ -123,7 +124,8 @@ const Navbar = () => {
           <SearchBar handleSearch={handleSearch} />
         </div>
         <div
-          className={`absolute top-[60px] right-0 left-0 bg-black-1 z-10 shadow-secondary py-4 ${!toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'} transition-all duration-700`}>
+          className={`absolute top-[60px] right-0 left-0 bg-black-1 z-10 shadow-secondary py-4 ${!toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'} transition-all duration-700`}
+        >
           <ul>
             {navlinks.map((link) => (
               <li
@@ -135,14 +137,16 @@ const Navbar = () => {
                     setToggleDrawer(false);
                     navigate(link.link);
                   }
-                }}>
+                }}
+              >
                 <img
                   src={link.imgUrl}
                   alt={link.name}
                   className={`w-[24px] h-[24px] object-contain ${isActive === link.name ? 'grayscale-0 ' : 'grayscale'}`}
                 />
                 <p
-                  className={`ml-[20px] font-epilogue font-semibold text-[14px] cursor-default ${isActive === link.name ? 'text-light-purple' : 'text-primary-text'}`}>
+                  className={`ml-[20px] font-epilogue font-semibold text-[14px] cursor-default ${isActive === link.name ? 'text-light-purple' : 'text-primary-text'}`}
+                >
                   {link.name}
                 </p>
               </li>

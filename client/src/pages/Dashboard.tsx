@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useContractContext } from '../context/ContractContext';
+import { ToastContainer, toast } from 'react-toastify';
+
 const DisplayCampaigns = React.lazy(
   () => import('../components/DisplayCampaigns')
 );
@@ -10,21 +12,23 @@ const Dashboard = () => {
 
   const { account, contract, getCampaigns } = useContractContext();
 
-  const fetchCampaigns = async () => {
-    setIsLoading(true);
-    try {
-      const data = await getCampaigns();
-      setCampaigns(data);
-    } catch (err) {
-      console.error('Failed to fetch campaigns', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchCampaigns = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getCampaigns();
+        setCampaigns(data);
+      } catch (err) {
+        toast(`Failed to fetch campaigns: ${err}`);
+        <ToastContainer />;
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     if (contract) fetchCampaigns();
-  }, [account, contract]);
+  }, [account, contract, getCampaigns]);
+
   return (
     <Suspense fallback={<div className='text-white'>Loading campaigns...</div>}>
       <DisplayCampaigns

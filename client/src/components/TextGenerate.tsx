@@ -28,7 +28,7 @@ const TextGenerate = ({
         delay: stagger(0.2),
       }
     );
-  }, []);
+  }, [animate, duration]);
 
   const renderWords = () => {
     return (
@@ -41,7 +41,8 @@ const TextGenerate = ({
               style={{
                 filter: filter ? 'blur(4px)' : 'none',
                 willChange: 'opacity, filter',
-              }}>
+              }}
+            >
               {word}{' '}
             </motion.span>
           );

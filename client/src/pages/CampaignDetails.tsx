@@ -8,6 +8,7 @@ const CustomButton = React.lazy(() => import('../components/CustomButton'));
 import { CountBox } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { logo } from '../assets';
+import { ToastContainer, toast } from 'react-toastify';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
@@ -30,34 +31,43 @@ const CampaignDetails = () => {
     [state.target, state.amountCollected]
   );
 
-  const fetchDonators = async () => {
-    try {
-      const data = await getDonations(state.pId);
-      setDonators(data);
-    } catch (err) {
-      console.error('Error fetching donators:', err);
-    }
-  };
-
-  const fetchCreatorCampaigns = async () => {
-    try {
-      const data = await getUserCampaigns(state.owner);
-      setCreatorCampaigns(data);
-    } catch (err) {
-      console.error('Error fetching creator campaigns:', err);
-    }
-  };
-
   useEffect(() => {
-    if (percentToTarget >= 100) setShowSuccessModal(true);
-  }, [percentToTarget]);
+    const fetchDonators = async () => {
+      try {
+        const data = await getDonations(state.pId);
+        setDonators(data);
+      } catch (err) {
+        toast(`Error fetching donators: ${err}`);
+        <ToastContainer />;
+      }
+    };
 
-  useEffect(() => {
+    const fetchCreatorCampaigns = async () => {
+      try {
+        const data = await getUserCampaigns(state.owner);
+        setCreatorCampaigns(data);
+      } catch (err) {
+        toast(`Error fetching creator campaigns: ${err}`);
+        <ToastContainer />;
+      }
+    };
+
     if (contract) {
       fetchDonators();
       fetchCreatorCampaigns();
     }
-  }, [contract, account]);
+  }, [
+    contract,
+    account,
+    getDonations,
+    getUserCampaigns,
+    state.owner,
+    state.pId,
+  ]);
+
+  useEffect(() => {
+    if (percentToTarget >= 100) setShowSuccessModal(true);
+  }, [percentToTarget]);
 
   const handleDonate = async () => {
     setIsLoading(true);
@@ -98,7 +108,8 @@ const CampaignDetails = () => {
               style={{
                 width: `${percentToTarget}%`,
                 maxWidth: '100%',
-              }}></div>
+              }}
+            ></div>
           </div>
         </div>
 
@@ -164,7 +175,8 @@ const CampaignDetails = () => {
                 donators.map((item, index) => (
                   <div
                     key={`${item.donator}-${index}`}
-                    className='flex justify-between items-center gap-4'>
+                    className='flex justify-between items-center gap-4'
+                  >
                     <p className='font-epilogue font-normal w-[70%] text-[16px] text-tertiary-text leading-[26px] break-all'>
                       {index + 1}. {item.donator}
                     </p>

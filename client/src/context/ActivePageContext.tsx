@@ -17,7 +17,7 @@ export const ActivePageContextProvider = ({
     } else {
       setIsActive(pathname.slice(1));
     }
-  }, []);
+  }, [pathname]);
 
   const setActivePage = (page: string) => setIsActive(page);
 
@@ -26,7 +26,8 @@ export const ActivePageContextProvider = ({
       value={{
         isActive,
         setActivePage,
-      }}>
+      }}
+    >
       {children}
     </ActivePageContext.Provider>
   );

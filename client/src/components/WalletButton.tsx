@@ -3,6 +3,7 @@ import { ConnectButton, useActiveAccount } from 'thirdweb/react';
 import { base } from 'thirdweb/chains';
 import { useContractContext } from '../context/ContractContext';
 import WelcomeScreen from '../components/WelcomeScreen';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { Wallet, Account } from 'thirdweb/dist/types/exports/wallets.native';
 
@@ -41,7 +42,8 @@ const WalletButton = () => {
       if (userAccount) {
         setActiveAccount(userAccount);
       } else {
-        console.warn('Wallet connected but no account available');
+        toast('Wallet not connected. Please connect a wallet and try again.');
+        <ToastContainer />;
       }
     },
     [setActiveAccount]

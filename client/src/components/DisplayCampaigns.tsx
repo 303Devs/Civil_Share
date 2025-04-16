@@ -56,12 +56,20 @@ const DisplayCampaigns = ({
               <p className='mr-2'>{title}</p>({finalCampaigns.length})
             </div>
           </h2>
+          <label
+            htmlFor='campaign-filter'
+            className='sr-only'
+          >
+            Filter campaigns
+          </label>
           <select
+            id='campaign-filter'
             value={filter}
             onChange={(e) =>
               setFilter(e.target.value as 'all' | 'active' | 'expired')
             }
-            className='text-white px-2 py-1 rounded border border-purple-main'>
+            className='text-white px-2 py-1 rounded border border-purple-main'
+          >
             <option value='all'>All</option>
             <option value='active'>Active</option>
             <option value='expired'>Expired</option>

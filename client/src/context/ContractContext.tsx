@@ -1,13 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import {
-  // prepareContractCall,
-  createThirdwebClient,
-  getContract,
-  // toEther,
-  // readContract,
-  // toWei,
-  // sendAndConfirmTransaction,
-} from 'thirdweb';
+import { createThirdwebClient, getContract } from 'thirdweb';
 import {
   prepareContractCall,
   readContract,
@@ -16,6 +8,7 @@ import {
 import { toEther, toWei } from 'thirdweb/utils';
 import { base } from 'thirdweb/chains';
 import { Account } from 'thirdweb/dist/types/exports/wallets.native';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ContractContext = createContext<ContractContextType | null>(null);
 
@@ -339,11 +332,11 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
         (campaign) => campaign.owner === account?.address
       );
     } catch (error) {
-      console.error(
-        'Failed to fetch user campaigns. Please connect a Wallet',
-        error
+      toast(
+        `Failed to fetch user campaigns. Please connect a Wallet. ${error}`
       );
-      throw error;
+      <ToastContainer />;
+      return [];
     }
   };
 
@@ -407,7 +400,8 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
         getDonations,
         searchTerm,
         setSearchTerm,
-      }}>
+      }}
+    >
       {children}
     </ContractContext.Provider>
   );

@@ -17,8 +17,8 @@
   --color-purple-main: #9300f3;
   --color-modal-bg: rgba(0, 0, 0, 0.7);
   --color-grey-2: #28282e;
-  --color-primary-text: #808191;
-  --color-secondary-text: #818183;
+  --color-primary-text: #c7c9d9;
+  --color-secondary-text: #a5a7b4;
   --color-placeholder-text: #4b5264;
   --color-tertiary-text: #b2b3bd;
   --color-civil-blue: #3a465b;
@@ -50,7 +50,7 @@
   );
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(0.8);
 }

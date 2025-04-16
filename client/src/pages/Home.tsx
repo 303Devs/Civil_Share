@@ -29,7 +29,8 @@ export function Home() {
             duration: 0.8,
             ease: 'easeInOut',
           }}
-          className='mt-8 bg-gradient-to-br from-slate-300 to-slate-500 pt-4 pb-28 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl'>
+          className='mt-8 bg-gradient-to-br from-slate-300 to-slate-500 pt-4 pb-28 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl'
+        >
           <TextGenerate words={'Welcome to Civil Share'} />
         </motion.h1>
         <div>

@@ -4,6 +4,8 @@ import { Navbar, Sidebar } from './components';
 import { Home } from './pages';
 import { Analytics } from '@vercel/analytics/react';
 
+const isProd = import.meta.env.MODE !== 'production';
+
 const CampaignDetails = React.lazy(() => import('./pages/CampaignDetails'));
 const CreateCampaign = React.lazy(() => import('./pages/CreateCampaign'));
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
@@ -19,14 +21,15 @@ const App = () => {
     return (
       <Suspense fallback={<div className='text-white'>Loading...</div>}>
         <Home />
-        <Analytics />
+        {isProd && <Analytics />}
       </Suspense>
     );
   }
   return (
     <div
       className='relative sm:p-8 p-4 bg-black-bg
-        min-h-screen flex flex-row'>
+        min-h-screen flex flex-row'
+    >
       <div className='sm:flex hidden mr-10 relative'>
         <Sidebar />
       </div>
@@ -70,7 +73,7 @@ const App = () => {
             />
           </Routes>
         </Suspense>
-        <Analytics />
+        {isProd && <Analytics />}
       </div>
     </div>
   );
