@@ -43,7 +43,7 @@ const CreateCampaign = () => {
           target: toWei(form.target),
         });
         setIsLoading(false);
-        navigate('/');
+        navigate('/profile');
       } else {
         alert('Provide valid image URL');
         setForm({ ...form, image: '' });

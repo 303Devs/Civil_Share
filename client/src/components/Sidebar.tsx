@@ -56,10 +56,9 @@ const Sidebar = () => {
         to='/'
         onClick={() => setActivePage('home')}>
         <Icon
-          styles='w-[52px] h-[52px] bg-bg-1'
+          styles='w-[48px] h-[48px] bg-bg-1'
           imgUrl={logo}
           name='home'
-          isActive={isActive}
         />
       </Link>
 

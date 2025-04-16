@@ -15,8 +15,8 @@ export default defineConfig({
         short_name: 'Civil',
         start_url: '/',
         display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#000000',
+        background_color: '#1c1c24',
+        theme_color: '#9300f3',
         icons: [
           {
             src: '/android-chrome-192x192.png',

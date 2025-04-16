@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar, Sidebar } from './components';
 import { Home } from './pages';
+import { Analytics } from '@vercel/analytics/react';
 
 const CampaignDetails = React.lazy(() => import('./pages/CampaignDetails'));
 const CreateCampaign = React.lazy(() => import('./pages/CreateCampaign'));
@@ -17,6 +18,7 @@ const App = () => {
     return (
       <Suspense fallback={<div className='text-white'>Loading...</div>}>
         <Home />
+        <Analytics />
       </Suspense>
     );
   }
@@ -63,6 +65,7 @@ const App = () => {
             />
           </Routes>
         </Suspense>
+        <Analytics />
       </div>
     </div>
   );

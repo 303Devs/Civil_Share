@@ -2,17 +2,25 @@ import React, { useEffect, useMemo, useCallback } from 'react';
 import { ConnectButton, useActiveAccount } from 'thirdweb/react';
 import { base } from 'thirdweb/chains';
 import { useContractContext } from '../context/ContractContext';
+import WelcomeScreen from '../components/WelcomeScreen';
+
 import { Wallet, Account } from 'thirdweb/dist/types/exports/wallets.native';
 
 const connectButtonStyles =
   'font-epilogue font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]';
 
-const logo =
-  'https://res.cloudinary.com/dxvlke88h/image/upload/v1744614467/civil_diamond_transparent_vp218l.png';
+const logo = '/logo.svg';
 
 const WalletButton = () => {
   const { client, setActiveAccount, account } = useContractContext();
   const activeAccount = useActiveAccount() || undefined;
+
+  const welcomeScreen = () => (
+    <WelcomeScreen
+      title={'Welcome to Civil Share!'}
+      img={{ src: logo, width: 200, height: 200 }}
+    />
+  );
 
   const buttonLabel = useMemo(
     () => (account ? 'Connected' : 'Connect a Wallet'),
@@ -51,6 +59,7 @@ const WalletButton = () => {
       <ConnectButton
         client={client}
         chain={base}
+        theme={'dark'}
         appMetadata={{
           name: 'Civil Share',
           url: 'www.share.civilprotocol.io',
@@ -69,16 +78,7 @@ const WalletButton = () => {
           showThirdwebBranding: false,
           title: 'Civil Share',
           titleIcon: logo,
-          welcomeScreen: {
-            title: 'Civil Share',
-            subtitle:
-              'Log in with an existing wallet or use "Social Login" via email, phone, social, or passkey. A new wallet will be created and linked to your account. You can export your private key under "Manage Wallet" — keep it secure and never share it.',
-            img: {
-              src: logo,
-              width: 150,
-              height: 150,
-            },
-          },
+          welcomeScreen: welcomeScreen,
         }}
         onConnect={handleConnect}
         onDisconnect={() => setActiveAccount(null)}
