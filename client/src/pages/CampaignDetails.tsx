@@ -7,7 +7,7 @@ const SuccessMessage = React.lazy(() => import('../components/SuccessMessage'));
 const CustomButton = React.lazy(() => import('../components/CustomButton'));
 import { CountBox } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { logo } from '../assets';
+import { logo } from '../../public/icons';
 import { ToastContainer, toast } from 'react-toastify';
 
 const CampaignDetails = () => {

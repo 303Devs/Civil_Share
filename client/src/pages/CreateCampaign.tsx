@@ -2,7 +2,7 @@ import React, { useState, Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useContractContext } from '../context';
-import { money } from '../assets';
+import { money } from '../../public/icons';
 const CustomButton = lazy(() => import('../components/CustomButton'));
 const FormField = lazy(() => import('../components/FormField'));
 const Loader = lazy(() => import('../components/Loader'));

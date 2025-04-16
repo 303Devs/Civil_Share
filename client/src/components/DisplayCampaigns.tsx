@@ -1,6 +1,6 @@
 import React, { useState, Suspense, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loader } from '../assets';
+import { loader } from '../../public/icons';
 
 const FundCard = React.lazy(() => import('./FundCard'));
 import { useContractContext } from '../context';

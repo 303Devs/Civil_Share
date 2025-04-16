@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { loader } from '../assets';
+import { loader } from '../../public/icons';
 
 const Loader = () => {
   return (

@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 import { Lamp, MagicButton, TextGenerate } from '../components';
 import { useActivePageContext } from '../context';
 
-import logo from '/logo.svg';
+import logo from '/icons/logo.svg';
 
 export function Home() {
   const navigate = useNavigate();

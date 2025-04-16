@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useActivePageContext } from '../context';
-import { logo, sun } from '../assets';
+import { logo, sun } from '../../public/icons';
 import { navlinks } from '../constants';
 
 interface IconProps {

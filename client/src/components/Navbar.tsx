@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useActivePageContext, useContractContext } from '../context';
 const TextGenerate = React.lazy(() => import('./TextGenerate'));
 const WalletButton = React.lazy(() => import('./WalletButton'));
-import { logo, menu, search } from '../assets';
+import { logo, menu, search } from '../../public/icons';
 import { navlinks } from '../constants';
 
 interface SearchBarProps {

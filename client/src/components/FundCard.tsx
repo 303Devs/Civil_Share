@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useMemo } from 'react';
 
-import { tagType, logo } from '../assets';
+import { tagType, logo } from '../../public/icons';
 import { daysLeft } from '../utils';
 
 const StatBlock = ({ label, value }: { label: string; value: string }) => (
