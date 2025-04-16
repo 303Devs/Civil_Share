@@ -1,21 +1,25 @@
 {
-  "name": "Civil Share",
-  "short_name": "Civil",
+  "theme_color": "#8936FF",
+  "background_color": "#2EC6FE",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon512_maskable.png",
+      "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
+      "purpose": "any",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "icon512_rounded.png",
+      "type": "image/png"
     }
   ],
-  "theme_color": "#9300f3",
-  "background_color": "#1a1a1a",
-  "display": "standalone"
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-US",
+  "name": "Civil Share",
+  "short_name": "Civil",
+  "start_url": "https://share.civilprotocol.io"
 }
