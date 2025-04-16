@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
     <div className='px-6 py-12 max-w-4xl mx-auto text-neutral-200'>
       <h1 className='text-4xl font-bold mb-6'>Privacy Policy</h1>
       <p className='mb-4'>
-        <strong>Effective Date:</strong> [Insert Date]
+        <strong>Effective Date:</strong> April 1st, 2025
       </p>
       <p className='mb-4'>
         At <strong>Civil Share</strong>, your privacy is fundamentally protected

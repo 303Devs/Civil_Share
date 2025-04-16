@@ -10,6 +10,7 @@ const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const Profile = React.lazy(() => import('./pages/Profile'));
 const TermsOfService = React.lazy(() => import('./pages/TermsOfService'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
+const LearnMore = React.lazy(() => import('./pages/LearnMore'));
 
 const App = () => {
   const pathName = useLocation().pathname;
@@ -62,6 +63,10 @@ const App = () => {
             <Route
               path='/privacy'
               element={<PrivacyPolicy />}
+            />
+            <Route
+              path='/learn-more'
+              element={<LearnMore />}
             />
           </Routes>
         </Suspense>

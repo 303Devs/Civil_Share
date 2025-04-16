@@ -13,14 +13,7 @@ const logo = '/logo.svg';
 
 const WalletButton = () => {
   const { client, setActiveAccount, account } = useContractContext();
-  const activeAccount = useActiveAccount() || undefined;
-
-  const welcomeScreen = () => (
-    <WelcomeScreen
-      title={'Welcome to Civil Share!'}
-      img={{ src: logo, width: 200, height: 200 }}
-    />
-  );
+  const activeAccount = useActiveAccount();
 
   const buttonLabel = useMemo(
     () => (account ? 'Connected' : 'Connect a Wallet'),
@@ -44,45 +37,71 @@ const WalletButton = () => {
 
   const handleConnect = useCallback(
     (wallet: Wallet) => {
-      const account: Account | undefined = wallet.getAccount();
-      if (!account) {
+      const userAccount: Account | undefined = wallet.getAccount();
+      if (userAccount) {
+        setActiveAccount(userAccount);
+      } else {
         console.warn('Wallet connected but no account available');
-        return;
       }
-      setActiveAccount(account);
     },
     [setActiveAccount]
   );
 
+  const appMetadata = {
+    name: 'Civil Share',
+    url: 'www.share.civilprotocol.io',
+    description: 'Changing the World One Campaign at a Time.',
+    logoUrl: logo,
+  };
+
+  const connectModal = {
+    termsOfServiceUrl: 'https://www.share.civilprotocol.io/terms',
+    privacyPolicyUrl: 'https://www.share.civilprotocol.io/privacy',
+    showThirdwebBranding: false,
+    title: 'Civil Share',
+    titleIcon: logo,
+    welcomeScreen: () => (
+      <WelcomeScreen
+        title={'Welcome to Civil Share!'}
+        img={{ src: logo, width: 200, height: 200 }}
+      />
+    ),
+  };
+
   return (
     <div>
-      <ConnectButton
-        client={client}
-        chain={base}
-        theme={'dark'}
-        appMetadata={{
-          name: 'Civil Share',
-          url: 'www.share.civilprotocol.io',
-          description: 'Changing the World One Campaign at a Time.',
-          logoUrl: logo,
-        }}
-        connectButton={{
-          label: buttonLabel,
-          className: connectButtonStyles,
-          style: buttonStyles,
-        }}
-        connectModal={{
-          termsOfServiceUrl: 'https://www.share.civilprotocol.io/terms',
-          privacyPolicyUrl: 'https://www.share.civilprotocol.io/privacy',
-          size: 'wide',
-          showThirdwebBranding: false,
-          title: 'Civil Share',
-          titleIcon: logo,
-          welcomeScreen: welcomeScreen,
-        }}
-        onConnect={handleConnect}
-        onDisconnect={() => setActiveAccount(null)}
-      />
+      <div className='flex sm:hidden'>
+        <ConnectButton
+          client={client}
+          chain={base}
+          theme='dark'
+          appMetadata={appMetadata}
+          connectButton={{
+            label: buttonLabel,
+            className: connectButtonStyles,
+            style: buttonStyles,
+          }}
+          connectModal={{ ...connectModal, size: 'compact' }}
+          onConnect={handleConnect}
+          onDisconnect={() => setActiveAccount(null)}
+        />
+      </div>
+      <div className='hidden sm:flex'>
+        <ConnectButton
+          client={client}
+          chain={base}
+          theme='dark'
+          appMetadata={appMetadata}
+          connectButton={{
+            label: buttonLabel,
+            className: connectButtonStyles,
+            style: buttonStyles,
+          }}
+          connectModal={{ ...connectModal, size: 'wide' }}
+          onConnect={handleConnect}
+          onDisconnect={() => setActiveAccount(null)}
+        />
+      </div>
     </div>
   );
 };

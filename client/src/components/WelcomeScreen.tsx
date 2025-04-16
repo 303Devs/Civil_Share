@@ -31,9 +31,9 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ title, img }) => {
         <span className='text-xl font-bold'>{title}</span>
         <div className='h-4' />
         <Link
-          to='/signup-info'
-          className='text-sm text-center text-gray-400 max-w-[250px] underline'>
-          Learn how our sign up process works
+          to='/learn-more'
+          className='text-sm text-center text-blue-500 max-w-[250px] underline'>
+          Explore our social, email, phone, and passkey login options.
         </Link>
         <div className='h-6' />
         <Link
@@ -50,21 +50,17 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ title, img }) => {
         <div className='flex flex-wrap justify-center'>
           <span className='max-w-[250px] text-center text-xs text-gray-500'>
             By connecting, you agree to the{' '}
-            <a
-              href='https://www.share.civilprotocol.io/terms'
-              target='_blank'
-              rel='noopener noreferrer'
+            <Link
+              to='/terms'
               className='whitespace-nowrap text-blue-500 underline'>
               Terms of Service
-            </a>
+            </Link>
             {' & '}
-            <a
-              href='https://www.share.civilprotocol.io/privacy'
-              target='_blank'
-              rel='noopener noreferrer'
+            <Link
+              to='/privacy'
               className='text-blue-500 underline'>
               Privacy Policy
-            </a>
+            </Link>
           </span>
         </div>
       </div>

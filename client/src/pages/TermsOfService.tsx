@@ -5,7 +5,7 @@ const TermsOfService = () => {
     <div className='px-6 py-12 max-w-4xl mx-auto text-neutral-200'>
       <h1 className='text-4xl font-bold mb-6'>Terms of Service</h1>
       <p className='mb-4'>
-        <strong>Effective Date:</strong> [Insert Date]
+        <strong>Effective Date:</strong> April 1st, 2025
       </p>
       <p className='mb-4'>
         Welcome to <strong>Civil Share</strong>, a decentralized crowdfunding
@@ -116,8 +116,7 @@ const TermsOfService = () => {
 
       <h2 className='text-2xl font-semibold mt-6 mb-2'>9. Contact</h2>
       <p className='mb-4'>
-        Questions? Reach out to us at [insert contact info or link to support
-        page].
+        Questions? Reach out to us at info@civilprotocol.io.
       </p>
     </div>
   );
