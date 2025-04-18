@@ -42,9 +42,9 @@ const FundCard = React.memo(
           src={image}
           alt='fund'
           loading='lazy'
-          width='288'
-          height='288'
-          className='w-full object-cover rounded-[15px]'
+          width='200'
+          height='200'
+          className='w-full h-[200px] object-cover rounded-[15px]'
         />
 
         <div className='flex flex-col p-4'>

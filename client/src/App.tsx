@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar, Sidebar } from './components';
 import { Home } from './pages';
 import { Analytics } from '@vercel/analytics/react';
+import Footer from './components/Footer';
 
 const CampaignDetails = React.lazy(() => import('./pages/CampaignDetails'));
 const CreateCampaign = React.lazy(() => import('./pages/CreateCampaign'));
@@ -70,6 +71,7 @@ const App = () => {
               element={<LearnMore />}
             />
           </Routes>
+          <Footer />
         </Suspense>
         <Analytics />
       </div>

@@ -118,6 +118,8 @@ const TermsOfService = () => {
       <p className='mb-4'>
         Questions? Reach out to us at info@civilprotocol.io.
       </p>
+      <h2 className='text-2xl font-semibold mt-6 mb-2'>10. Contract Address</h2>
+      <p className='mb-4'>Base: 0xE48F250676bc94D35dF83f645942181Fd77892B6 </p>
     </div>
   );
 };
