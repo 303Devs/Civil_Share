@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useCallback } from 'react';
 import { ConnectButton, useActiveAccount, darkTheme } from 'thirdweb/react';
 import { base } from 'thirdweb/chains';
 import { createWallet, inAppWallet } from 'thirdweb/wallets';
-
+import { useNavigate } from 'react-router-dom';
 import { useContractContext } from '../context/ContractContext';
 import { WalletModal } from './';
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,10 +21,7 @@ const wallets = [
       redirectUrl: 'https://shared.civilprotocol.io/dashboard',
       options: [
         'google',
-        'discord',
-        'telegram',
         'email',
-        'x',
         'passkey',
         'phone',
         'github',
@@ -39,14 +36,10 @@ const wallets = [
   createWallet('org.uniswap'),
   createWallet('com.crypto.wallet'),
   createWallet('com.robinhood.wallet'),
-  // createWallet('me.rainbow'),
-  // createWallet('com.binance.wallet'),
-  // createWallet('com.kraken'),
-  // createWallet('io.1inch.wallet'),
-  // createWallet('global.safe'),
 ];
 
 const WalletButton = () => {
+  const navigate = useNavigate();
   const { client, setActiveAccount, account } = useContractContext();
   const activeAccount = useActiveAccount();
 
@@ -69,13 +62,19 @@ const WalletButton = () => {
       const userAccount: Account | undefined = wallet.getAccount();
       if (userAccount) {
         setActiveAccount(userAccount);
+        navigate('/dashboard');
       } else {
         toast('Wallet not connected. Please connect a wallet and try again.');
         <ToastContainer />;
       }
     },
-    [setActiveAccount]
+    [setActiveAccount, navigate]
   );
+
+  const handleDisconnect = () => {
+    setActiveAccount(null);
+    navigate('/');
+  };
 
   const appMetadata = {
     name: 'Civil Share',
@@ -128,7 +127,7 @@ const WalletButton = () => {
           }}
           connectModal={{ ...connectModal, size: 'compact' }}
           onConnect={handleConnect}
-          onDisconnect={() => setActiveAccount(null)}
+          onDisconnect={handleDisconnect}
         />
       </div>
       {/* On screns small(640px) and larger */}
@@ -151,7 +150,7 @@ const WalletButton = () => {
           }}
           connectModal={{ ...connectModal, size: 'wide' }}
           onConnect={handleConnect}
-          onDisconnect={() => setActiveAccount(null)}
+          onDisconnect={handleDisconnect}
         />
       </div>
     </div>

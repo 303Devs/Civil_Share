@@ -43,6 +43,12 @@ const TermsOfService = () => {
         All contributions are executed through smart contracts deployed on the
         Base Network and are publicly verifiable:
       </p>
+      <p className='mb-4'>
+        Base is an Ethereum Layer 2 network developed by Coinbase, designed for
+        scalability, low fees, and seamless interaction with Ethereum. It brings
+        the power of decentralization to Civil Share while providing a smooth
+        user experience.
+      </p>
       <ul className='list-disc list-inside mb-4'>
         <li>
           <strong>100% of contributions</strong> go directly to the campaign

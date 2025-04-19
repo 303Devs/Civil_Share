@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Lamp, MagicButton, WalletButton, Footer } from '../components';
-import logo from '/icons/logo.svg';
 
 const Hero = () => {
   return (
@@ -9,7 +8,7 @@ const Hero = () => {
       <Lamp>
         <div className='flex flex-col items-center justify-center px-6 pt-24 sm:pt-32'>
           <img
-            src={logo}
+            src={'/logo.svg'}
             width={160}
             height={160}
             alt='Civil Share Logo'
@@ -27,6 +26,15 @@ const Hero = () => {
             className='pb-6 bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-center text-4xl font-semibold tracking-tight text-transparent sm:text-5xl md:text-6xl'
           >
             Civil Share
+            <p className='text-md text-secondary-text p-2 text-xs tracking-wide'>
+              Part of the{' '}
+              <a
+                href='https://civilprotocol.io'
+                className='text-[#bb98f9] hover:text-white'
+              >
+                Civil Protocol Ecosystem
+              </a>
+            </p>
           </motion.h1>
         </div>
         <div className='flex flex-col justify-center items-center text-center gap-4 px-6 mt-12 sm:mt-16'>
@@ -42,7 +50,7 @@ const Hero = () => {
               title={'Explore Campaigns'}
               icon={
                 <img
-                  src={logo}
+                  src={'/logo.svg'}
                   width={25}
                   height={25}
                   alt='logo'
@@ -52,7 +60,7 @@ const Hero = () => {
               handleClick={() => {
                 window.location.href = '/dashboard';
               }}
-              otherClasses={'text-neutral-200'}
+              otherClasses={'text-white'}
             />
             <WalletButton />
           </div>
@@ -120,10 +128,9 @@ const Hero = () => {
         <div className='max-w-4xl mx-auto text-center'>
           <h2 className='text-3xl font-bold mb-4'>How Civil Share Works</h2>
           <p className='text-secondary-text text-md mb-6'>
-            Built entirely on the Base blockchain, Civil Share provides
-            end-to-end transparency and security. Every campaign and donation is
-            recorded on-chain, ensuring that 100% of the proceeds go directly to
-            the campaign creator—no intermediaries, no hidden fees.
+            Civil Share is built on Base, an Ethereum Layer 2 solution incubated
+            by Coinbase. Base enables fast, low-cost transactions while
+            maintaining full Ethereum compatibility and decentralization.
           </p>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6 text-left'>
             <div className='bg-black-2 p-5 rounded-lg shadow'>

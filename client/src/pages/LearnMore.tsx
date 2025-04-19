@@ -4,7 +4,7 @@ const LearnMore = () => {
   return (
     <div className='min-h-screen text-neutral-100 p-6'>
       <div className='max-w-3xl mx-auto'>
-        <h1 className='text-3xl font-bold mb-6'>How Logging In Works</h1>
+        <h1 className='text-3xl font-bold mb-6'>Learn More</h1>
 
         <section className='mb-8'>
           <h2 className='text-2xl font-semibold mb-4'>Creating Your Wallet</h2>
@@ -105,6 +105,29 @@ const LearnMore = () => {
             secret password—never share it with anyone. With the Manage Wallet
             feature, you can easily keep track of your wallet and export your
             private key if needed.
+          </p>
+        </section>
+
+        <section className='mb-8'>
+          <h2 className='text-2xl font-semibold mb-4'>Why We Use Base</h2>
+          <p className='mb-4 text-base leading-relaxed'>
+            Civil Share runs on Base, a secure and scalable Ethereum Layer 2
+            solution created by Coinbase. It provides ultra-low fees, fast
+            confirmations, and access to the Ethereum ecosystem—all while
+            benefiting from Coinbase’s infrastructure and decentralization
+            principles.
+          </p>
+          <p className='text-base leading-relaxed'>
+            To learn more about the Base blockchain, visit{' '}
+            <a
+              href='https://base.org/about'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-500 underline'
+            >
+              base.org/about
+            </a>
+            .
           </p>
         </section>
       </div>

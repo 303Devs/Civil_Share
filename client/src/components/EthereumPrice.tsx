@@ -5,11 +5,15 @@ import { useContractContext } from '../context/ContractContext';
 
 interface EthereumPriceProps {
   target: string;
+  isDonation?: boolean;
 }
 
 const ETH_USD_PRICE_FEED_ADDRESS = '0x694AA1769357215DE4FAC081bf1f309aDC325306';
 
-const EthereumPrice: React.FC<EthereumPriceProps> = ({ target }) => {
+const EthereumPrice: React.FC<EthereumPriceProps> = ({
+  target,
+  isDonation,
+}) => {
   const [ethPrice, setEthPrice] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -361,10 +365,11 @@ const EthereumPrice: React.FC<EthereumPriceProps> = ({ target }) => {
 
   return (
     <div className='p-2'>
-      <h3 className='font-epilogue text-[10px] text-primary-text'>
-        Goal in (USD):{'  '}
+      <h3 className='font-epilogue text-[12px] text-primary-text'>
+        {!isDonation && `Goal:  `}
+        {isDonation && `Donation:  `}
         {ethPrice && Number(target) ?
-          `$${(Number(ethPrice) * Number(target)).toFixed(2)}`
+          `$${(Number(ethPrice) * Number(target)).toFixed(2)} USD`
         : '$0.00'}
       </h3>
     </div>

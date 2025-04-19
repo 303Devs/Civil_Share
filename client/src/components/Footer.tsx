@@ -37,26 +37,28 @@ export default function Footer() {
             </div>
 
             <div className='mt-4 flex space-x-4'>
-              {socialIcons.map((icon: { name: string; d: string }) => (
-                <a
-                  key={icon.name}
-                  href='https://x.com/303devs'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-secondary-text hover:text-color-primary-text transition-colors'
-                >
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    width='20'
-                    height='20'
-                    fill='currentColor'
-                    className={`bi text-purple-main ${icon.name}`}
-                    viewBox='0 0 16 16'
+              {socialIcons.map(
+                (icon: { name: string; href: string; d: string }) => (
+                  <a
+                    key={icon.name}
+                    href={icon.href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-secondary-text hover:text-color-primary-text transition-colors'
                   >
-                    <path d={`${icon.d}`} />
-                  </svg>
-                </a>
-              ))}
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='20'
+                      height='20'
+                      fill='currentColor'
+                      className={`bi text-purple-main ${icon.name}`}
+                      viewBox='0 0 16 16'
+                    >
+                      <path d={`${icon.d}`} />
+                    </svg>
+                  </a>
+                )
+              )}
             </div>
           </div>
 
@@ -105,12 +107,10 @@ export default function Footer() {
         </div>
 
         <div className='flex flex-col sm:flex-row sm:items-end sm:justify-center sm:space-x-2 border-t pt-6 text-center'>
-          <p className='text-secondary-text text-sm'>
-            The Civil Protocol Ecosystem is an initiative by
-          </p>
+          <p className='text-secondary-text text-sm'>A</p>
           <a
             href='https://303devs.com'
-            className='mt-2 sm:mt-0 flex justify-center sm:justify-start'
+            className='mt-2 sm:mt-0 flex justify-center sm:justify-start pb-[2px]'
           >
             <img
               src='/icons/303_logo.svg'
@@ -118,6 +118,7 @@ export default function Footer() {
               className='h-[26px] w-auto'
             />
           </a>
+          <p className='text-secondary-text text-sm'>Initiative</p>
         </div>
       </div>
     </footer>

@@ -5,7 +5,7 @@ import { useContractContext } from '../context/ContractContext';
 const Loader = React.lazy(() => import('../components/Loader'));
 const SuccessMessage = React.lazy(() => import('../components/SuccessMessage'));
 const CustomButton = React.lazy(() => import('../components/CustomButton'));
-import { CountBox } from '../components';
+import { CountBox, EthereumPrice } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -148,7 +148,8 @@ const CampaignDetails = () => {
                   {state.owner}
                 </h4>
                 <p className='mt-[4px] font-epilogue font-normal text-[12px] text-primary-text'>
-                  {creatorCampaigns.length} Campaigns
+                  {creatorCampaigns.length}
+                  {creatorCampaigns.length === 1 ? ' Campaign' : ' Campaigns'}
                 </p>
               </div>
             </div>
@@ -159,7 +160,7 @@ const CampaignDetails = () => {
               Story
             </h4>
             <div className='mt-[20px]'>
-              <p className='font-epilogue font-normal text-[16px] text-primary-text leading-[16px] text-justify'>
+              <p className='font-epilogue font-normal text-[16px] text-primary-text leading-tight text-justify'>
                 {state.description}
               </p>
             </div>
@@ -209,6 +210,10 @@ const CampaignDetails = () => {
                 className='w-full py-[10px] sm:px-[20px] px-[15px] outline-hidden border-[1px] border-black-2 bg-transparent font-epilogue text-white text-[18px] leading-[30px] placeholder:text-placeholder-text rounded-[10px]'
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+              />
+              <EthereumPrice
+                target={amount}
+                isDonation
               />
               <div className='my-[20px] p-4 bg-black-bg rounded-[10px]'>
                 <h4 className='font-epilogue font-semibold text-[14px] leading-[22px] text-white'>
