@@ -37,24 +37,28 @@ const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const title = 'Civil Share';
 
-  const Wallet = () => (
+  const ConnectWallet: React.FC<{ showIcon?: boolean }> = ({
+    showIcon = false,
+  }) => (
     <div className='flex flex-row gap-4'>
       <Suspense fallback={<div />}>
         <WalletButton />
       </Suspense>
       <Link
-        to='/home'
+        to='/'
         onClick={() => setActivePage('home')}
       >
-        <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
-          <img
-            src={'/icons/303_emblem.svg'}
-            alt='user'
-            height={30}
-            width={30}
-            className='object-contain'
-          />
-        </div>
+        {showIcon && (
+          <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
+            <img
+              src={'/icons/logo-purple.svg'}
+              alt='user'
+              height={30}
+              width={30}
+              className='object-contain'
+            />
+          </div>
+        )}
       </Link>
     </div>
   );
@@ -75,16 +79,16 @@ const Navbar = () => {
           </Suspense>
         </h1>
         <div className='w-[60%] pr-4'>
-          {location.pathname !== '/home' && (
+          {location.pathname !== '/' && (
             <SearchBar handleSearch={handleSearch} />
           )}
         </div>
-        <Wallet />
+        <ConnectWallet showIcon={true} />
       </div>
 
       {/* Sm and Md screen navigation */}
-      <div className='hidden sm:flex lg:hidden w-full flex-col justify-between pb-12'>
-        <div className='flex flex-row justify-between pb-8'>
+      <div className='hidden sm:flex lg:hidden w-full flex-col justify-between pb-8'>
+        <div className='flex flex-row justify-between pb-6'>
           <h1 className='h-fit'>
             <Suspense fallback={<div />}>
               <TextGenerate
@@ -93,11 +97,9 @@ const Navbar = () => {
               />
             </Suspense>
           </h1>
-          <Wallet />
+          <ConnectWallet />
         </div>
-        {location.pathname !== '/home' && (
-          <SearchBar handleSearch={handleSearch} />
-        )}
+        {location.pathname !== '/' && <SearchBar handleSearch={handleSearch} />}
       </div>
 
       {/* XSmall screen navigation */}
@@ -105,7 +107,7 @@ const Navbar = () => {
         <div className='flex justify-between items-center relative'>
           <div className='w-[40px] h-[40px] rounded-[10px] bg-black-1 flex justify-center items-center cursor-pointer'>
             <img
-              src={'/logo.svg'}
+              src={'/icons/logo-purple.svg'}
               alt='user'
               className='w-[60%] h-[60%] object-contain'
             />
@@ -126,7 +128,7 @@ const Navbar = () => {
           />
         </div>
         <div className='pb-8'>
-          {location.pathname !== '/home' && (
+          {location.pathname !== '/' && (
             <SearchBar handleSearch={handleSearch} />
           )}
         </div>

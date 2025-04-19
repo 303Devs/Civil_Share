@@ -12,4 +12,5 @@ export { default as EthereumPrice } from './EthereumPrice';
 export { default as TextGenerate } from './TextGenerate';
 export { default as Lamp } from './Lamp';
 export { default as MagicButton } from './MagicButton';
-export { default as WelcomeScreen } from './WelcomeScreen';
+export { default as WalletModal } from './WalletModal';
+export { default as Footer } from './Footer';

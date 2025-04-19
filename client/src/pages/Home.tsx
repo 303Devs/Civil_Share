@@ -1,29 +1,66 @@
 import React from 'react';
+import { motion } from 'motion/react';
+import { Lamp, MagicButton, WalletButton, Footer } from '../components';
+import logo from '/icons/logo.svg';
 
 const Hero = () => {
   return (
     <div className='text-white min-h-screen bg-black-bg flex flex-col'>
-      {/* Above the fold */}
-      <section className='flex flex-col items-center justify-center text-center pb-24 px-6'>
-        <h1 className='text-4xl md:text-6xl font-bold mb-4'>
-          Web3 Crowdfunding, Made Simple
-        </h1>
-        <p className='text-lg md:text-xl max-w-2xl text-secondary-text mb-6'>
-          Civil Share makes it easy to fund and launch campaigns on the Base
-          blockchain— no crypto experience required. Sign up with email or
-          social, get a wallet instantly, and enjoy full transparency with every
-          donation.
-        </p>
-        <a
-          href='/dashboard'
-          className='bg-purple-main hover:bg-purple-700 transition px-6 py-3 rounded-lg text-white font-semibold'
-        >
-          Explore Campaigns
-        </a>
-      </section>
+      <Lamp>
+        <div className='flex flex-col items-center justify-center px-6 pt-24 sm:pt-32'>
+          <img
+            src={logo}
+            width={160}
+            height={160}
+            alt='Civil Share Logo'
+            loading='eager'
+            className='mb-4 md:mb-6'
+          />
+          <motion.h1
+            initial={{ opacity: 0.5, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.3,
+              duration: 0.8,
+              ease: 'easeInOut',
+            }}
+            className='pb-6 bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-center text-4xl font-semibold tracking-tight text-transparent sm:text-5xl md:text-6xl'
+          >
+            Civil Share
+          </motion.h1>
+        </div>
+        <div className='flex flex-col justify-center items-center text-center gap-4 px-6 mt-12 sm:mt-16'>
+          <h2>Web3 Crowdfunding, Made Simple</h2>
+          <p className='text-lg md:text-xl max-w-2xl text-secondary-text mb-6'>
+            Civil Share makes it easy to fund and launch campaigns on the Base
+            blockchain— no crypto experience required. Sign up with email or
+            social, get a wallet instantly, and enjoy full transparency with
+            every donation.
+          </p>
+          <div className='flex flex-col sm:flex-row gap-6 items-center'>
+            <MagicButton
+              title={'Explore Campaigns'}
+              icon={
+                <img
+                  src={logo}
+                  width={25}
+                  height={25}
+                  alt='logo'
+                />
+              }
+              position={'left'}
+              handleClick={() => {
+                window.location.href = '/dashboard';
+              }}
+              otherClasses={'text-neutral-200'}
+            />
+            <WalletButton />
+          </div>
+        </div>
+      </Lamp>
 
       {/* Below the fold */}
-      <section className='grid grid-cols-1 md:grid-cols-3 gap-6 px-6 pb-20 max-w-6xl mx-auto'>
+      <section className='grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-20 max-w-6xl mx-auto'>
         <div className='bg-black-1 p-6 rounded-lg border border-black-2 shadow'>
           <h3 className='text-xl font-semibold mb-2'>
             🌐 What is Civil Share?
@@ -124,7 +161,7 @@ const Hero = () => {
       </section>
 
       {/* Using Your Wallet */}
-      <section className='px-6 py-12 border-t border-black-2 bg-black-bg'>
+      <section className='px-6 pt-12 border-t border-black-2 bg-black-bg'>
         <div className='max-w-4xl mx-auto text-center'>
           <h2 className='text-3xl font-bold mb-4'>
             Your Web3 Wallet Made Easy
@@ -152,6 +189,8 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

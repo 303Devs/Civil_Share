@@ -1,9 +1,9 @@
 import React from 'react';
 import { socialIcons, quickLinks } from '../constants';
 
-export default function FooterSection() {
+export default function Footer() {
   return (
-    <footer className='bg-black-bg py-10 border-t mt-24 md:mt-48'>
+    <footer className='bg-black-bg py-10 border-t mt-24 md:mt-36'>
       <div className='container mx-auto px-4'>
         <div className='flex flex-col md:flex-row gap-8 mb-8'>
           {/* Contact Us - Second on mobile, first on desktop */}
@@ -90,32 +90,32 @@ export default function FooterSection() {
             </p>
             <a
               href='https://civilprotocol.io'
-              className='flex items-center hover:opacity-80 transition-opacity'
+              className='inline-flex items-center gap-2 hover:opacity-80 transition-opacity'
             >
-              <img
-                src='/icons/logo-purple.svg'
-                alt='Civil Protocol Logo'
-                className='w-6 h-6 mr-2'
-              />
               <span className='text-secondary-text'>
                 © 2025 Civil Protocol
               </span>
+              <img
+                src='/icons/logo-purple.svg'
+                alt='Civil Protocol Logo'
+                className='w-6 h-6'
+              />
             </a>
           </div>
         </div>
 
-        <div className='flex flex-row border-t pt-6 justify-center'>
-          <p className='text-secondary-text text-sm content-end'>
+        <div className='flex flex-col sm:flex-row sm:items-end sm:justify-center sm:space-x-2 border-t pt-6 text-center'>
+          <p className='text-secondary-text text-sm'>
             The Civil Protocol Ecosystem is an initiative by
           </p>
           <a
             href='https://303devs.com'
-            className='text-purple-main hover:text-white transition-colors ml-1'
+            className='mt-2 sm:mt-0 flex justify-center sm:justify-start'
           >
             <img
               src='/icons/303_logo.svg'
               alt='303Devs Logo'
-              className='w-22 h-[26px]'
+              className='h-[26px] w-auto'
             />
           </a>
         </div>

@@ -4,7 +4,7 @@ import { base } from 'thirdweb/chains';
 import { createWallet, inAppWallet } from 'thirdweb/wallets';
 
 import { useContractContext } from '../context/ContractContext';
-import WelcomeScreen from '../components/WelcomeScreen';
+import { WalletModal } from './';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Wallet, Account } from 'thirdweb/dist/types/exports/wallets.native';
@@ -91,7 +91,7 @@ const WalletButton = () => {
     title: 'Civil Share',
     titleIcon: logo,
     welcomeScreen: () => (
-      <WelcomeScreen
+      <WalletModal
         title={'Welcome to Civil Share!'}
         img={{ src: logo, width: 200, height: 200 }}
       />
