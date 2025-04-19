@@ -48,12 +48,14 @@ const LearnMore = () => {
           </p>
           <p className='mb-4 text-base leading-relaxed'>
             It is extremely important that you never share your private key with
-            anyone. If someone else obtains it, they could gain full control
-            over your wallet and steal your assets. Always store your private
-            key securely and offline whenever possible.
+            anyone. Thirdweb does not store or have access to your keys—only you
+            do. If someone else obtains your private key, they could gain full
+            control over your wallet and assets. Always store your private key
+            securely and offline whenever possible.
           </p>
-          <p className='text-base leading-relaxed'>
-            Learn more about wallet security{' '}
+          <p className='mb-4 text-base leading-relaxed'>
+            To better understand how your wallet is secured, read the full
+            Thirdweb Wallet Security documentation{' '}
             <a
               href='https://portal.thirdweb.com/connect/wallet/security'
               target='_blank'

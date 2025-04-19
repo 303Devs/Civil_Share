@@ -51,8 +51,28 @@ const PrivacyPolicy = () => {
         to understand their practices.
       </p>
 
+      <h2 className='text-2xl font-semibold mt-6 mb-2'>4. Wallet Security</h2>
+      <p className='mb-4'>
+        Civil Share integrates with Thirdweb to provide wallet infrastructure.
+        These wallets are non-custodial—only you have access to your private
+        keys. Neither Civil Share nor Thirdweb can retrieve or reset your
+        wallet.
+      </p>
+      <p className='mb-4'>
+        For more details on wallet protection, visit{' '}
+        <a
+          href='https://portal.thirdweb.com/connect/wallet/security'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-blue-500 underline'
+        >
+          Thirdweb’s wallet security documentation
+        </a>
+        .
+      </p>
+
       <h2 className='text-2xl font-semibold mt-6 mb-2'>
-        4. Cookies & Analytics
+        5. Cookies & Analytics
       </h2>
       <p className='mb-4'>
         Civil Share uses lightweight analytics tools to track overall site
@@ -63,7 +83,7 @@ const PrivacyPolicy = () => {
       </p>
 
       <h2 className='text-2xl font-semibold mt-6 mb-2'>
-        5. Your Responsibilities
+        6. Your Responsibilities
       </h2>
       <p className='mb-4'>
         You are responsible for safeguarding your wallet credentials. Civil
@@ -71,14 +91,14 @@ const PrivacyPolicy = () => {
       </p>
 
       <h2 className='text-2xl font-semibold mt-6 mb-2'>
-        6. Changes to this Policy
+        7. Changes to this Policy
       </h2>
       <p className='mb-4'>
         We may revise this Privacy Policy occasionally. Continued use of the
         platform means you accept the most recent version.
       </p>
 
-      <h2 className='text-2xl font-semibold mt-6 mb-2'>7. Contact</h2>
+      <h2 className='text-2xl font-semibold mt-6 mb-2'>8. Contact</h2>
       <p className='mb-4'>
         If you have questions about privacy, contact us at [insert contact info
         or support page].

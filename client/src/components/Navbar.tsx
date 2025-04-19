@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { useActivePageContext, useContractContext } from '../context';
 const TextGenerate = React.lazy(() => import('./TextGenerate'));
@@ -31,6 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => (
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isActive, setActivePage } = useActivePageContext();
   const { setSearchTerm } = useContractContext();
   const [toggleDrawer, setToggleDrawer] = useState(false);
@@ -42,12 +43,12 @@ const Navbar = () => {
         <WalletButton />
       </Suspense>
       <Link
-        to='/profile'
-        onClick={() => setActivePage('profile')}
+        to='/home'
+        onClick={() => setActivePage('home')}
       >
         <div className='w-[52px] h-[52px] rounded-full bg-black-1 flex justify-center items-center cursor-pointer'>
           <img
-            src={'/logo.svg'}
+            src={'/icons/303_emblem.svg'}
             alt='user'
             height={30}
             width={30}
@@ -74,7 +75,9 @@ const Navbar = () => {
           </Suspense>
         </h1>
         <div className='w-[60%] pr-4'>
-          <SearchBar handleSearch={handleSearch} />
+          {location.pathname !== '/home' && (
+            <SearchBar handleSearch={handleSearch} />
+          )}
         </div>
         <Wallet />
       </div>
@@ -92,7 +95,9 @@ const Navbar = () => {
           </h1>
           <Wallet />
         </div>
-        <SearchBar handleSearch={handleSearch} />
+        {location.pathname !== '/home' && (
+          <SearchBar handleSearch={handleSearch} />
+        )}
       </div>
 
       {/* XSmall screen navigation */}
@@ -121,7 +126,9 @@ const Navbar = () => {
           />
         </div>
         <div className='pb-8'>
-          <SearchBar handleSearch={handleSearch} />
+          {location.pathname !== '/home' && (
+            <SearchBar handleSearch={handleSearch} />
+          )}
         </div>
         <div
           className={`absolute top-[60px] right-0 left-0 bg-black-1 z-10 shadow-secondary py-4 ${!toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'} transition-all duration-700`}

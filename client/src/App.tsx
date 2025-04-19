@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar, Sidebar } from './components';
-import { Home } from './pages';
+import { Landing } from './pages';
 import { Analytics } from '@vercel/analytics/react';
 import Footer from './components/Footer';
 
 const CampaignDetails = React.lazy(() => import('./pages/CampaignDetails'));
+const Home = React.lazy(() => import('./pages/Home'));
 const CreateCampaign = React.lazy(() => import('./pages/CreateCampaign'));
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const Profile = React.lazy(() => import('./pages/Profile'));
@@ -19,7 +20,7 @@ const App = () => {
   if (pathName === '/') {
     return (
       <Suspense fallback={<div className='text-white'>Loading...</div>}>
-        <Home />
+        <Landing />
         <Analytics />
       </Suspense>
     );
@@ -40,6 +41,10 @@ const App = () => {
           <Routes>
             <Route
               path='/'
+              element={<Landing />}
+            />
+            <Route
+              path='/home'
               element={<Home />}
             />
             <Route
@@ -71,8 +76,8 @@ const App = () => {
               element={<LearnMore />}
             />
           </Routes>
-          <Footer />
         </Suspense>
+        <Footer />
         <Analytics />
       </div>
     </div>

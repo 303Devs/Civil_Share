@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useCallback } from 'react';
-import { ConnectButton, useActiveAccount } from 'thirdweb/react';
+import { ConnectButton, useActiveAccount, darkTheme } from 'thirdweb/react';
 import { base } from 'thirdweb/chains';
+import { createWallet, inAppWallet } from 'thirdweb/wallets';
+
 import { useContractContext } from '../context/ContractContext';
 import WelcomeScreen from '../components/WelcomeScreen';
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,12 +14,44 @@ const connectButtonStyles =
 
 const logo = '/logo.svg';
 
+const wallets = [
+  inAppWallet({
+    auth: {
+      mode: 'popup',
+      redirectUrl: 'https://shared.civilprotocol.io/dashboard',
+      options: [
+        'google',
+        'discord',
+        'telegram',
+        'email',
+        'x',
+        'passkey',
+        'phone',
+        'github',
+        'coinbase',
+        'facebook',
+        'apple',
+      ],
+    },
+  }),
+  createWallet('io.metamask'),
+  createWallet('com.coinbase.wallet'),
+  // createWallet('me.rainbow'),
+  // createWallet('com.binance.wallet'),
+  createWallet('org.uniswap'),
+  // createWallet('com.kraken'),
+  createWallet('com.crypto.wallet'),
+  // createWallet('io.1inch.wallet'),
+  // createWallet('global.safe'),
+  createWallet('com.robinhood.wallet'),
+];
+
 const WalletButton = () => {
   const { client, setActiveAccount, account } = useContractContext();
   const activeAccount = useActiveAccount();
 
   const buttonLabel = useMemo(
-    () => (account ? 'Connected' : 'Connect a Wallet'),
+    () => (account ? 'Connected' : 'Login & Connect'),
     [account]
   );
   const buttonStyles = useMemo(
@@ -29,12 +63,6 @@ const WalletButton = () => {
     }),
     [account]
   );
-
-  useEffect(() => {
-    if (account && activeAccount && activeAccount.address !== account.address) {
-      setActiveAccount(activeAccount);
-    }
-  }, [activeAccount, account, setActiveAccount]);
 
   const handleConnect = useCallback(
     (wallet: Wallet) => {
@@ -70,13 +98,26 @@ const WalletButton = () => {
     ),
   };
 
+  useEffect(() => {
+    if (account && activeAccount && activeAccount.address !== account.address) {
+      setActiveAccount(activeAccount);
+    }
+  }, [activeAccount, account, setActiveAccount]);
+
   return (
     <div>
+      {/* On xs screens */}
       <div className='flex sm:hidden'>
         <ConnectButton
           client={client}
+          wallets={wallets}
           chain={base}
-          theme='dark'
+          theme={darkTheme({
+            colors: {
+              accentButtonBg: 'hsl(276, 100%, 48%)',
+              accentText: 'hsl(276, 100%, 48%)',
+            },
+          })}
           appMetadata={appMetadata}
           connectButton={{
             label: buttonLabel,
@@ -88,11 +129,18 @@ const WalletButton = () => {
           onDisconnect={() => setActiveAccount(null)}
         />
       </div>
+      {/* On screns small(640px) and larger */}
       <div className='hidden sm:flex'>
         <ConnectButton
           client={client}
           chain={base}
-          theme='dark'
+          wallets={wallets}
+          theme={darkTheme({
+            colors: {
+              accentButtonBg: 'hsl(276, 100%, 48%)',
+              accentText: 'hsl(276, 100%, 48%)',
+            },
+          })}
           appMetadata={appMetadata}
           connectButton={{
             label: buttonLabel,

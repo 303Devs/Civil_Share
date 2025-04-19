@@ -108,10 +108,26 @@ const TermsOfService = () => {
         <li>Any indirect, incidental, or consequential damages</li>
       </ul>
 
-      <h2 className='text-2xl font-semibold mt-6 mb-2'>8. Changes to Terms</h2>
+      <h2 className='text-2xl font-semibold mt-6 mb-2'>
+        8. Thirdweb Wallet Security
+      </h2>
       <p className='mb-4'>
-        These Terms may be updated periodically. By continuing to use Civil
-        Share, you agree to the latest version.
+        Civil Share integrates with Thirdweb to provide seamless wallet
+        onboarding. While we never have access to your private keys, Thirdweb
+        provides the wallet infrastructure and follows industry-standard
+        encryption and security protocols.
+      </p>
+      <p className='mb-4'>
+        You can learn more about how your wallet is protected by reviewing the{' '}
+        <a
+          href='https://portal.thirdweb.com/connect/wallet/security'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-blue-500 underline'
+        >
+          Thirdweb Wallet Security documentation
+        </a>
+        .
       </p>
 
       <h2 className='text-2xl font-semibold mt-6 mb-2'>9. Contact</h2>

@@ -53,14 +53,19 @@ const Sidebar = () => {
   return (
     <div className='flex justify-between items-center flex-col sticky top-5 h-[93vh]'>
       <Link
-        to='/'
+        to='/home'
         onClick={() => setActivePage('home')}
       >
-        <Icon
-          styles='w-[48px] h-[48px] bg-bg-1'
-          imgUrl={'/logo.svg'}
-          name='home'
-        />
+        <div
+          className={`w-[48px] h-[48px] rounded-[10px] flex justify-center items-center`}
+        >
+          <img
+            src={'/icons/logo-purple.svg'}
+            alt='logo'
+            loading='lazy'
+            className={''}
+          />
+        </div>
       </Link>
 
       <div className='flex-1 flex flex-col justify-between items-center bg-black-1 rounded-[20px] w-[76px] py-4 mt-12'>
