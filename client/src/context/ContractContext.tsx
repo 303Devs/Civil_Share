@@ -331,10 +331,18 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
       return campaigns.filter(
         (campaign) => campaign.owner === account?.address
       );
-    } catch (error) {
-      toast(
-        `Failed to fetch user campaigns. Please connect a Wallet. ${error}`
-      );
+    } catch {
+      toast.error('Something went wrong', {
+        data: {
+          title: 'Oh Snap!',
+          content: 'Something went wrong',
+        },
+        ariaLabel: 'Something went wrong',
+        autoClose: 5000,
+        progress: 0.3,
+        icon: false,
+        theme: 'colored',
+      });
       <ToastContainer />;
       return [];
     }
@@ -386,6 +394,25 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
     return parsedDonations;
   };
 
+  const CAMPAIGN_RATE_LIMIT_KEY = 'lastCampaignCreation';
+
+  const canCreateCampaign = (): boolean => {
+    const lastCreated = localStorage.getItem(CAMPAIGN_RATE_LIMIT_KEY);
+    if (!lastCreated) return true;
+
+    const lastTimestamp = parseInt(lastCreated, 10);
+    const now = Date.now();
+
+    // Allow one campaign every 12 hours (in milliseconds)
+    const RATE_LIMIT_MS = 24 * 60 * 60 * 1000;
+
+    return now - lastTimestamp >= RATE_LIMIT_MS;
+  };
+
+  const registerCampaignCreation = () => {
+    localStorage.setItem(CAMPAIGN_RATE_LIMIT_KEY, Date.now().toString());
+  };
+
   return (
     <ContractContext.Provider
       value={{
@@ -400,6 +427,8 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
         getDonations,
         searchTerm,
         setSearchTerm,
+        canCreateCampaign,
+        registerCampaignCreation,
       }}
     >
       {children}

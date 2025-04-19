@@ -23,6 +23,8 @@ interface ContractContextType {
   ) => Promise<{ donator: string; donation: string }[]>;
   searchTerm: string;
   setSearchTerm: (_term: string) => void;
+  canCreateCampaign: () => boolean; // Added
+  registerCampaignCreation: () => void; // Added
 }
 
 interface ContextProviderProps {

@@ -6,13 +6,15 @@ const CustomButton = lazy(() => import('../components/CustomButton'));
 const FormField = lazy(() => import('../components/FormField'));
 const Loader = lazy(() => import('../components/Loader'));
 const EthereumPrice = lazy(() => import('../components/EthereumPrice'));
+import { ToastContainer, toast } from 'react-toastify';
 import { checkIfImage } from '../utils';
 import { toWei } from 'thirdweb';
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { publishCampaign } = useContractContext();
+  const { publishCampaign, canCreateCampaign, registerCampaignCreation } =
+    useContractContext();
   const [form, setForm] = useState({
     name: '',
     title: '',
@@ -33,6 +35,24 @@ const CreateCampaign = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!canCreateCampaign()) {
+      toast.error(
+        'You can only create one campaign every 24 hours. Please try again later.',
+        {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        }
+      );
+      <ToastContainer />;
+      return;
+    }
+
     checkIfImage(form.image, async (exists: boolean) => {
       if (exists) {
         setIsLoading(true);
@@ -41,6 +61,7 @@ const CreateCampaign = () => {
           ...form,
           target: toWei(form.target),
         });
+        registerCampaignCreation();
         setIsLoading(false);
         navigate('/profile');
       } else {
