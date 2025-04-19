@@ -36,14 +36,14 @@ const wallets = [
   }),
   createWallet('io.metamask'),
   createWallet('com.coinbase.wallet'),
+  createWallet('org.uniswap'),
+  createWallet('com.crypto.wallet'),
+  createWallet('com.robinhood.wallet'),
   // createWallet('me.rainbow'),
   // createWallet('com.binance.wallet'),
-  createWallet('org.uniswap'),
   // createWallet('com.kraken'),
-  createWallet('com.crypto.wallet'),
   // createWallet('io.1inch.wallet'),
   // createWallet('global.safe'),
-  createWallet('com.robinhood.wallet'),
 ];
 
 const WalletButton = () => {
@@ -101,6 +101,8 @@ const WalletButton = () => {
   useEffect(() => {
     if (account && activeAccount && activeAccount.address !== account.address) {
       setActiveAccount(activeAccount);
+    } else {
+      setActiveAccount(null);
     }
   }, [activeAccount, account, setActiveAccount]);
 
