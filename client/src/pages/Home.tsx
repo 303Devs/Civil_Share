@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Lamp, MagicButton, WalletButton, Footer } from '../components';
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div className='text-white min-h-screen bg-black-bg flex flex-col'>
       <Lamp>
@@ -38,7 +40,7 @@ const Hero = () => {
           </motion.h1>
         </div>
         <div className='flex flex-col justify-center items-center text-center gap-4 px-6 mt-12 sm:mt-16'>
-          <h2>Web3 Crowdfunding, Made Simple</h2>
+          <h2 className='text-2xl font-semibold'>Web3 Crowdfunding, Made Simple</h2>
           <p className='text-lg md:text-xl max-w-2xl text-secondary-text mb-6'>
             Civil Share makes it easy to fund and launch campaigns on the Base
             blockchain— no crypto experience required. Sign up with email or
@@ -57,9 +59,7 @@ const Hero = () => {
                 />
               }
               position={'left'}
-              handleClick={() => {
-                window.location.href = '/dashboard';
-              }}
+              handleClick={() => navigate('/dashboard')}
               otherClasses={'text-white'}
             />
             <WalletButton />

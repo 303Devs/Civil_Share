@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getContract, readContract } from 'thirdweb';
-import { sepolia } from 'thirdweb/chains';
+import { base } from 'thirdweb/chains';
 import { useContractContext } from '../context/ContractContext';
 
 interface EthereumPriceProps {
@@ -8,7 +8,8 @@ interface EthereumPriceProps {
   isDonation?: boolean;
 }
 
-const ETH_USD_PRICE_FEED_ADDRESS = '0x694AA1769357215DE4FAC081bf1f309aDC325306';
+// Chainlink ETH/USD price feed on Base mainnet
+const ETH_USD_PRICE_FEED_ADDRESS = '0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70';
 
 const EthereumPrice: React.FC<EthereumPriceProps> = ({
   target,
@@ -22,7 +23,7 @@ const EthereumPrice: React.FC<EthereumPriceProps> = ({
   // Initialize the Chainlink price feed contract
   const contract = getContract({
     client: client,
-    chain: sepolia,
+    chain: base,
     address: ETH_USD_PRICE_FEED_ADDRESS,
     abi: [
       {

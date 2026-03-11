@@ -8,7 +8,7 @@ import {
 import { toEther, toWei } from 'thirdweb/utils';
 import { base } from 'thirdweb/chains';
 import { Account } from 'thirdweb/dist/types/exports/wallets.native';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const ContractContext = createContext<ContractContextType | null>(null);
 
@@ -260,7 +260,7 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
     category,
   }: Form) => {
     if (!account) {
-      alert('Wallet not connected. Please connect a wallet and try again.');
+      toast.error('Wallet not connected. Please connect a wallet and try again.');
       return;
     }
 
@@ -332,18 +332,7 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
         (campaign) => campaign.owner === account?.address
       );
     } catch {
-      toast.error('Something went wrong', {
-        data: {
-          title: 'Oh Snap!',
-          content: 'Something went wrong',
-        },
-        ariaLabel: 'Something went wrong',
-        autoClose: 5000,
-        progress: 0.3,
-        icon: false,
-        theme: 'colored',
-      });
-      <ToastContainer />;
+      toast.error('Something went wrong fetching campaigns.');
       return [];
     }
   };
@@ -351,7 +340,7 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
   // A function for the current user can donate to a campaign
   const donate = async (pId: bigint, amount: string) => {
     if (!account) {
-      alert('Wallet not connected. Please connect a wallet and try again.');
+      toast.error('Wallet not connected. Please connect a wallet and try again.');
       return;
     }
 
@@ -361,11 +350,6 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
       params: [pId],
       value: toWei(amount),
     });
-
-    if (!account || !contract) {
-      alert('Wallet not connected. Please connect a wallet and try again.');
-      return;
-    }
 
     const receipt = await sendAndConfirmTransaction({
       transaction,
@@ -403,7 +387,7 @@ export const ContractContextProvider = ({ children }: ContextProviderProps) => {
     const lastTimestamp = parseInt(lastCreated, 10);
     const now = Date.now();
 
-    // Allow one campaign every 12 hours (in milliseconds)
+    // Allow one campaign every 24 hours (in milliseconds)
     const RATE_LIMIT_MS = 24 * 60 * 60 * 1000;
 
     return now - lastTimestamp >= RATE_LIMIT_MS;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useContractContext } from '../context/ContractContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const DisplayCampaigns = React.lazy(
   () => import('../components/DisplayCampaigns')
@@ -19,8 +19,7 @@ const Dashboard = () => {
         const data = await getCampaigns();
         setCampaigns(data);
       } catch (err) {
-        toast(`Failed to fetch campaigns: ${err}`);
-        <ToastContainer />;
+        toast.error(`Failed to fetch campaigns: ${err}`);
       } finally {
         setIsLoading(false);
       }

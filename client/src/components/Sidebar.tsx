@@ -45,7 +45,8 @@ const Sidebar = () => {
                     setActiveAccount(null);
                     setActivePage('home');
                     disconnect(wallet);
-                    navigate('/home');
+                    navigate('/');
+                    return;
                   }
                   setActivePage(link.name);
                   navigate(link.link);
@@ -55,12 +56,6 @@ const Sidebar = () => {
           ))}
         </div>
 
-        <Icon
-          styles='bg-black-1 shadow-secondary'
-          imgUrl={'/icons/sun.svg'}
-          name='theme'
-          isActive={isActive}
-        />
       </div>
     </div>
   );

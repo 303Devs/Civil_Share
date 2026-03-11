@@ -2,21 +2,22 @@ import React, { useState, Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useContractContext } from '../context';
+import { campaignCategories } from '../constants';
 const CustomButton = lazy(() => import('../components/CustomButton'));
 const FormField = lazy(() => import('../components/FormField'));
 const Loader = lazy(() => import('../components/Loader'));
 const EthereumPrice = lazy(() => import('../components/EthereumPrice'));
-import { ToastContainer, toast } from 'react-toastify';
+const WalletButton = lazy(() => import('../components/WalletButton'));
+import { toast } from 'react-toastify';
 import { checkIfImage } from '../utils';
 import { toWei } from 'thirdweb';
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { publishCampaign, canCreateCampaign, registerCampaignCreation } =
+  const { account, publishCampaign, canCreateCampaign, registerCampaignCreation } =
     useContractContext();
   const [form, setForm] = useState({
-    name: '',
     title: '',
     description: '',
     target: '',
@@ -38,18 +39,8 @@ const CreateCampaign = () => {
     if (!canCreateCampaign()) {
       toast.error(
         'You can only create one campaign every 24 hours. Please try again later.',
-        {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        }
+        { position: 'bottom-right', autoClose: 5000, theme: 'colored' }
       );
-      <ToastContainer />;
       return;
     }
 
@@ -65,11 +56,24 @@ const CreateCampaign = () => {
         setIsLoading(false);
         navigate('/profile');
       } else {
-        alert('Provide valid image URL');
+        toast.error('Please provide a valid image URL.');
         setForm({ ...form, image: '' });
       }
     });
   };
+
+  if (!account) {
+    return (
+      <div className='bg-black-1 flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4 gap-6'>
+        <h2 className='font-epilogue font-bold text-[18px] text-white text-center'>
+          Connect your wallet to create a campaign
+        </h2>
+        <Suspense fallback={<div />}>
+          <WalletButton />
+        </Suspense>
+      </div>
+    );
+  }
 
   return (
     <div className='bg-black-1 flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4'>
@@ -97,25 +101,30 @@ const CreateCampaign = () => {
             handleChange={(e) => handleFormFieldChange('title', e)}
           />
         </Suspense>
+
         <div className='flex flex-wrap gap-[40px]'>
-          <Suspense fallback={null}>
-            <FormField
-              labelName='Your Name *'
-              placeholder='John Doe'
-              inputType='text'
-              value={form.name}
-              handleChange={(e) => handleFormFieldChange('name', e)}
-            />
-          </Suspense>
-          <Suspense fallback={null}>
-            <FormField
-              labelName='Category *'
-              placeholder='Select a Category'
-              inputType='text'
+          <label className='flex-1 w-full flex flex-col'>
+            <span className='font-epilogue font-medium text-[14px] leading-[22px] text-primary-text mb-[10px]'>
+              Category *
+            </span>
+            <select
+              required
               value={form.category}
-              handleChange={(e) => handleFormFieldChange('category', e)}
-            />
-          </Suspense>
+              onChange={(e) =>
+                setForm({ ...form, category: e.target.value })
+              }
+              className='py-[15px] sm:px-[25px] px-[15px] outline-hidden border-[1px] border-black-2 bg-black-bg font-epilogue text-white text-[14px] rounded-[10px] sm:min-w-[300px]'
+            >
+              <option value='' disabled>
+                Select a category
+              </option>
+              {campaignCategories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <Suspense fallback={null}>
@@ -128,40 +137,28 @@ const CreateCampaign = () => {
           />
         </Suspense>
 
-        <div
-          className={
-            'w-full flex justify-start items-center p-4 h-[120px] bg-light-purple rounded-[10px]'
-          }
-        >
+        <div className='w-full flex justify-start items-center p-4 h-[120px] bg-light-purple rounded-[10px]'>
           <img
             src={'/icons/money.svg'}
             alt='money'
             loading='lazy'
             className='w-[40px] h-[40px] object-contain'
           />
-          <h4
-            className={
-              'font-epilogue font-bold text-[25px] text-white ml-[20px]'
-            }
-          >
+          <h4 className='font-epilogue font-bold text-[25px] text-white ml-[20px]'>
             You will get 100% of the raised amount
           </h4>
         </div>
 
         <div className='flex flex-wrap gap-[40px]'>
           <div className='flex flex-col'>
-            <div>
-              <Suspense fallback={null}>
-                <FormField
-                  labelName='Goal *'
-                  placeholder='ETH 0.05'
-                  inputType='number'
-                  value={form.target}
-                  handleChange={(e) => handleFormFieldChange('target', e)}
-                />
-              </Suspense>
-            </div>
             <Suspense fallback={null}>
+              <FormField
+                labelName='Goal *'
+                placeholder='ETH 0.05'
+                inputType='number'
+                value={form.target}
+                handleChange={(e) => handleFormFieldChange('target', e)}
+              />
               <EthereumPrice target={form.target} />
             </Suspense>
           </div>

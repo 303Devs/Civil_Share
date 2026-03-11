@@ -7,7 +7,7 @@ const SuccessMessage = React.lazy(() => import('../components/SuccessMessage'));
 const CustomButton = React.lazy(() => import('../components/CustomButton'));
 import { CountBox, EthereumPrice } from '../components';
 import { calculateBarPercentage, daysLeft } from '../utils';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
@@ -36,8 +36,7 @@ const CampaignDetails = () => {
         const data = await getDonations(state.pId);
         setDonators(data);
       } catch (err) {
-        toast(`Error fetching donators: ${err}`);
-        <ToastContainer />;
+        toast.error(`Error fetching donators: ${err}`);
       }
     };
 
@@ -46,8 +45,7 @@ const CampaignDetails = () => {
         const data = await getUserCampaigns(state.owner);
         setCreatorCampaigns(data);
       } catch (err) {
-        toast(`Error fetching creator campaigns: ${err}`);
-        <ToastContainer />;
+        toast.error(`Error fetching creator campaigns: ${err}`);
       }
     };
 
@@ -75,7 +73,7 @@ const CampaignDetails = () => {
 
     setIsLoading(false);
     setAmount('');
-    navigate('/');
+    navigate('/dashboard');
   };
 
   return (

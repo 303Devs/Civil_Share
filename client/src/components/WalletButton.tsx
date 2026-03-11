@@ -5,7 +5,7 @@ import { createWallet, inAppWallet } from 'thirdweb/wallets';
 import { useNavigate } from 'react-router-dom';
 import { useContractContext } from '../context/ContractContext';
 import { WalletModal } from './';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { Wallet, Account } from 'thirdweb/dist/types/exports/wallets.native';
 
@@ -64,8 +64,7 @@ const WalletButton = () => {
         setActiveAccount(userAccount);
         navigate('/dashboard');
       } else {
-        toast('Wallet not connected. Please connect a wallet and try again.');
-        <ToastContainer />;
+        toast.error('Wallet not connected. Please connect a wallet and try again.');
       }
     },
     [setActiveAccount, navigate]

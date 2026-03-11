@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useContractContext } from '../context/ContractContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const DisplayCampaigns = React.lazy(
   () => import('../components/DisplayCampaigns')
@@ -19,8 +19,7 @@ const Profile = () => {
         const data = await getUserCampaigns();
         setCampaigns(data);
       } catch (err) {
-        toast(`Error fetching user campaigns: ${err}`);
-        <ToastContainer />;
+        toast.error(`Error fetching user campaigns: ${err}`);
       } finally {
         setIsLoading(false);
       }

@@ -95,7 +95,7 @@ export default function Footer() {
               className='inline-flex items-center gap-2 hover:opacity-80 transition-opacity'
             >
               <span className='text-secondary-text'>
-                © 2025 Civil Protocol
+                © {new Date().getFullYear()} Civil Protocol
               </span>
               <img
                 src='/icons/logo-purple.svg'

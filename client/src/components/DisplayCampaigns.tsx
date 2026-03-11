@@ -23,28 +23,23 @@ const DisplayCampaigns = ({
   const { searchTerm } = useContractContext();
   const [filter, setFilter] = useState<'all' | 'active' | 'expired'>('active');
 
-  const searchFilteredCampaigns = useMemo(() => {
-    const query = searchTerm.toLowerCase();
-    return campaigns.filter(
-      (campaign) =>
-        campaign.title.toLowerCase().includes(query) ||
-        campaign.description.toLowerCase().includes(query) ||
-        campaign.category.toLowerCase().includes(query)
-    );
-  }, [campaigns, searchTerm]);
-
-  const deadlineFiltered = useMemo(() => {
+  const finalCampaigns = useMemo(() => {
+    const query = searchTerm.toLowerCase().trim();
     const now = Date.now();
     return campaigns.filter((campaign) => {
       const deadline = Number(campaign.deadline);
-      if (filter === 'active') return deadline >= now;
-      if (filter === 'expired') return deadline < now;
-      return true;
+      const matchesDeadline =
+        filter === 'active' ? deadline >= now
+        : filter === 'expired' ? deadline < now
+        : true;
+      const matchesSearch =
+        query.length === 0 ||
+        campaign.title.toLowerCase().includes(query) ||
+        campaign.description.toLowerCase().includes(query) ||
+        campaign.category.toLowerCase().includes(query);
+      return matchesDeadline && matchesSearch;
     });
-  }, [campaigns, filter]);
-
-  const finalCampaigns =
-    searchTerm.trim().length > 0 ? searchFilteredCampaigns : deadlineFiltered;
+  }, [campaigns, searchTerm, filter]);
 
   return (
     <div>
@@ -79,7 +74,7 @@ const DisplayCampaigns = ({
       <div className='flex flex-wrap mt-[20px] gap-[26px]'>
         {isLoading && (
           <img
-            src={'/icons/loader'}
+            src={'/icons/loader.svg'}
             alt='loader'
             className='w-[100px] h-[100px] object-contain'
           />

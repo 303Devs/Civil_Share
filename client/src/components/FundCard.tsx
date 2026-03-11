@@ -2,6 +2,9 @@ import React, { MouseEventHandler, useMemo } from 'react';
 
 import { daysLeft } from '../utils';
 
+const clamp = (val: number, min: number, max: number) =>
+  Math.min(Math.max(val, min), max);
+
 const StatBlock = ({ label, value }: { label: string; value: string }) => (
   <div className='flex flex-col'>
     <h4 className='font-epilogue font-semibold text-[14px] text-tertiary-text leading-[22px]'>
@@ -33,6 +36,15 @@ const FundCard = React.memo(
       () => daysLeft(new Date(deadline)),
       [deadline]
     );
+    const progress = useMemo(
+      () =>
+        clamp(
+          (parseFloat(amountCollected) / parseFloat(target)) * 100,
+          0,
+          100
+        ),
+      [amountCollected, target]
+    );
     return (
       <div
         className='sm:w-[288px] w-full rounded-[15px] bg-black-1 cursor-pointer'
@@ -44,8 +56,14 @@ const FundCard = React.memo(
           loading='lazy'
           width='200'
           height='200'
-          className='w-full h-[200px] object-cover rounded-[15px]'
+          className='w-full h-[200px] object-cover rounded-t-[15px]'
         />
+        <div className='w-full h-[4px] bg-black-2'>
+          <div
+            className='h-full bg-purple-main transition-all duration-300'
+            style={{ width: `${progress}%` }}
+          />
+        </div>
 
         <div className='flex flex-col p-4'>
           <div className='flex flex-row items-center mb-[18px]'>

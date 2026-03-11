@@ -1,5 +1,4 @@
 interface Form {
-  name: string;
   title: string;
   description: string;
   target: bigint;
